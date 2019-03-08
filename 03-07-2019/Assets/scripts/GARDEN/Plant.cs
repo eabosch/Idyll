@@ -5,12 +5,15 @@ using UnityEngine;
 public class Plant : MonoBehaviour
 {
 
-    Animator anim;
+
 
     public string harvestedPlant;
-    public Sprite seedling;
-    public AnimationClip readyToHarvest;
-    public Sprite deadPlant;
+
+    [SerializeField] public GameObject Seedling;
+    [SerializeField] public GameObject ReadyToHarvest;
+    public GameObject seedling;
+    public GameObject readyToHarvest;
+    public GameObject deadPlant;
 
     public int timeLimit1 = 0;
     public int timeLimit2 = 0;
@@ -18,8 +21,8 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-   }
+       
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,13 +30,17 @@ public class Plant : MonoBehaviour
 
         if(time == timeLimit1)
         {
-            GetComponent<SpriteRenderer>().sprite = seedling;
+            seedling = Instantiate(Seedling) as GameObject;
+            seedling.transform.position = new Vector3(this.transform.position.x, this.transform.position.y+ 1.5f, this.transform.position.z);
+            //Instantiate(seedling, this.transform.position, Quaternion.identity);
+            Debug.Log("parsnip changed");
+
         } else if (time == timeLimit2)
         {
-            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            Debug.Log(stateInfo);
-            // readyToHarvest=GetComponent<GameObject>();
-            //readyToHarvest = GetComponent<GameObject>.Play("parsnip_grown");
+            
+            readyToHarvest = Instantiate(ReadyToHarvest) as GameObject;
+            readyToHarvest.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
+            //GetComponent<SpriteRenderer>().sprite = readyToHarvest;
         }
 
         time++;

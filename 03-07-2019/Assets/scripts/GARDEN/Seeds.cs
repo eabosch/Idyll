@@ -6,6 +6,7 @@ public class Seeds : MonoBehaviour
 {
     public Equipments currentSeed;
     public GameObject plant;
+    //public string currentPlant;
 
     public void sew_plant(Vector3 pos)
     {
@@ -26,5 +27,10 @@ public class Seeds : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public string get_plant_name()
+    {
+        return plant.name;
     }
 }
