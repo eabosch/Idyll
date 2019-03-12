@@ -1,0 +1,42 @@
+[
+	{
+		"title": "Annie Intro",
+		"tags": "",
+		"body": "''Strange Woman:'' ...hello.\r\n\r\n''Strange Woman:''  A new face... that's rare.\r\n\r\n[[It's nice to meet you, ma'am|annieIntro1]]",
+		"position": {
+			"x": 141,
+			"y": -5
+		},
+		"colorID": 4
+	},
+	{
+		"title": "annieIntro1",
+		"tags": "",
+		"body": "Strange Woman: Where are my manners? I'm Annie.\r\n\r\nAnnie: I am glad for a new neighbor, honest. You just caught me a bit unawares.\r\n\r\n[[Apologize for the trouble ma'am|annieIntro2]]\r\n[[It's no trouble, ma'am. I Understand.|annieIntro3]]",
+		"position": {
+			"x": -54,
+			"y": 270
+		},
+		"colorID": 1
+	},
+	{
+		"title": "annieIntro2",
+		"tags": "",
+		"body": "Annie: You're awfully kind. It was no trouble at all.\r\n\r\nAnnie: Are you the new tenant at that old farm?\r\n\r\nAnnie: Sort of a dreary place, no?\r\n                \r\n[[Not at all. I enjoy the peace and quiet.]]\r\n[[A little. But it's good to have neighbors.]]",
+		"position": {
+			"x": -216,
+			"y": 523
+		},
+		"colorID": 1
+	},
+	{
+		"title": "annieIntro3",
+		"tags": "",
+		"body": "Annie: Good, good. Would be a shame if I left a poor impression on my new neighbor.\r\n\r\nAnnie: If you haven't yet, you should take a short preamble around these  woods.\r\n\r\nAnnie: My favorite method of clearing my mind. And the birdsong is so pleasant.",
+		"position": {
+			"x": 117,
+			"y": 522
+		},
+		"colorID": 1
+	}
+]
