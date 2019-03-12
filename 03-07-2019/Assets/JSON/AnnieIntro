@@ -1,0 +1,62 @@
+[
+	{
+		"title": "Annie Intro",
+		"tags": "",
+		"body": "''Strange Woman:'' ...hello.\r\n\r\n''Strange Woman:''  A new face... that's rare.\r\n\r\n\r\n[[It's nice to meet you, ma'am|NiceToMeetYouAnnie]]",
+		"position": {
+			"x": 319,
+			"y": 141
+		},
+		"colorID": 4
+	},
+	{
+		"title": "NiceToMeetYouAnnie",
+		"tags": "",
+		"body": "''Annie:'' Where are my manners? I'm Annie.\r\n\r\n''Annie:'' I //am// glad for a new neighbor, honest. You just caught me a bit unawares.\r\n\r\n\r\n[[Apologize for the trouble ma'am.|AnnieIntro1]]\r\n\r\n[[It's no trouble, ma'am. I understand.|AnnieIntro2]]",
+		"position": {
+			"x": 137,
+			"y": 394
+		},
+		"colorID": 1
+	},
+	{
+		"title": "AnnieIntro1",
+		"tags": "",
+		"body": "''Annie:'' You're awfully kind. It was no trouble at all.\r\n\r\n''Annie:'' Are you the new tenant at that old farm?\r\n\r\n''Annie:'' Sort of dreary place, no?\r\n\r\n\r\n[[Not at all. I enjoy the peace and quiet.|AnnieIntro3]]\r\n\r\n[[A little. But it's good to have neighbors.|AnnieIntro4]] ",
+		"position": {
+			"x": 68,
+			"y": 681
+		},
+		"colorID": 1
+	},
+	{
+		"title": "AnnieIntro2",
+		"tags": "",
+		"body": "''Annie:'' Good, good. Would be a shame if I left a poor impression on my new neighbor.\r\n\r\n''Annie:'' If you haven't yet, you should take a short little preamble around these woods.\r\n\r\n''Annie:'' My favorite method of clearing my mind. And the birdsong is so pleasant.",
+		"position": {
+			"x": 278,
+			"y": 680
+		},
+		"colorID": 1
+	},
+	{
+		"title": "AnnieIntro3",
+		"tags": "",
+		"body": "''Annie:'' Well you'll find no shortage of that.\r\n\r\n''Annie:'' Don't let me keep you from your work. Those parsnips are waiting for you.",
+		"position": {
+			"x": -216,
+			"y": 1000
+		},
+		"colorID": 1
+	},
+	{
+		"title": "AnnieIntro4",
+		"tags": "",
+		"body": "''Annie:'' There are plenty of good people nearby. You should try making friends.\r\n\r\n''Annie:'' Though I suppose I shouldn't be advising you in that regard. ",
+		"position": {
+			"x": -3,
+			"y": 1000
+		},
+		"colorID": 1
+	}
+]
