@@ -94,11 +94,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestedPlant: parsnip
-  Seedling: {fileID: 3631341206610746036, guid: 5e36769f665229348b98d3b79d6c2572,
+  Seedling: {fileID: 2977936147849838849, guid: 42a3153dd20bdfc408824c795e252fa5,
     type: 3}
   ReadyToHarvest: {fileID: 5107547454169112466, guid: bb200c9c2813fee4ea9293dd1ab35928,
     type: 3}
-  seedling: {fileID: 3631341206610746036, guid: 5e36769f665229348b98d3b79d6c2572,
+  seedling: {fileID: 2977936147849838849, guid: 42a3153dd20bdfc408824c795e252fa5,
     type: 3}
   readyToHarvest: {fileID: 5107547454169112466, guid: bb200c9c2813fee4ea9293dd1ab35928,
     type: 3}

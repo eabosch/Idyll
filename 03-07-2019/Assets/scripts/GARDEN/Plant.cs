@@ -30,19 +30,38 @@ public class Plant : MonoBehaviour
 
         if(time == timeLimit1)
         {
-            seedling = Instantiate(Seedling) as GameObject;
-            seedling.transform.position = new Vector3(this.transform.position.x, this.transform.position.y+ 1.5f, this.transform.position.z);
+            
+             seedling = Instantiate(Seedling) as GameObject;
             //Instantiate(seedling, this.transform.position, Quaternion.identity);
+            //seedling.SetActive(true);
+            seedling.transform.position = new Vector3(this.transform.position.x, this.transform.position.y+ 1.5f, this.transform.position.z);
             Debug.Log("parsnip changed");
 
         } else if (time == timeLimit2)
         {
-            
+
+           // seedling.GetComponent<Renderer>().enabled = false;
+
+           // seedling.SetActive(false);
+            // DeletePlant(timeLimit2, seedling);
             readyToHarvest = Instantiate(ReadyToHarvest) as GameObject;
             readyToHarvest.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
-            //GetComponent<SpriteRenderer>().sprite = readyToHarvest;
-        }
+           // Instantiate(readyToHarvest, this.transform.position, Quaternion.identity);
 
+        }
+        
         time++;
     }
+
+
+
+
+    private void DeletePlant(int t, GameObject plant)
+    {
+        if (t == time)
+        {
+            Destroy(plant);
+        }
+    }
 }
+
