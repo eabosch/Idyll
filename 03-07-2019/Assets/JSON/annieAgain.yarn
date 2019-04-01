@@ -1,0 +1,48 @@
+title: Annie Intro
+tags: 
+colorID: 4
+position: 141,-5
+---
+''Strange Woman:'' ...hello.
+
+''Strange Woman:''  A new face... that's rare.
+
+[[It's nice to meet you, ma'am|annieIntro1]]
+===
+title: annieIntro1
+tags: 
+colorID: 1
+position: -54,270
+---
+Strange Woman: Where are my manners? I'm Annie.
+
+Annie: I am glad for a new neighbor, honest. You just caught me a bit unawares.
+
+[[Apologize for the trouble ma'am|annieIntro2]]
+[[It's no trouble, ma'am. I Understand.|annieIntro3]]
+===
+title: annieIntro2
+tags: 
+colorID: 1
+position: -216,523
+---
+Annie: You're awfully kind. It was no trouble at all.
+
+Annie: Are you the new tenant at that old farm?
+
+Annie: Sort of a dreary place, no?
+                
+[[Not at all. I enjoy the peace and quiet.]]
+[[A little. But it's good to have neighbors.]]
+===
+title: annieIntro3
+tags: 
+colorID: 1
+position: 117,522
+---
+Annie: Good, good. Would be a shame if I left a poor impression on my new neighbor.
+
+Annie: If you haven't yet, you should take a short preamble around these  woods.
+
+Annie: My favorite method of clearing my mind. And the birdsong is so pleasant.
+===
