@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnplantedRow : MonoBehaviour
 {
-    public Equipments currentSeed;
+    //public Equipments currentSeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,6 @@ public class UnplantedRow : MonoBehaviour
 
     void OnMouseDown()
     {
-        currentSeed.get_selected().sew_plant(this.gameObject.transform.position);
+        Equipments.instance.get_selected_seed().sew_plant(this.gameObject.transform.position);
     }
 }

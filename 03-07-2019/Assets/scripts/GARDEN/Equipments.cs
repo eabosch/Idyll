@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class Equipments : MonoBehaviour
 {
+    public static Equipments instance;
+
     private Seeds selectedSeed;
 
-    public void set_selected(Seeds seed)
+    public void set_selected_seed(Seeds seed)
     {
         selectedSeed = seed;
     }
 
-    public Seeds get_selected()
+    public Seeds get_selected_seed()
     {
         return selectedSeed;
     }
 
+    //Awake gets called first,
+    private void Awake()
+    {
+        instance = this;
+    }
 
-    // Start is called before the first frame update
+   
+    //Then start
     void Start()
     {
         
