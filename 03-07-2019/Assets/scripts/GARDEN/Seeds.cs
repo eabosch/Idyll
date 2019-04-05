@@ -10,6 +10,8 @@ public class Seeds : MonoBehaviour
     public void sew_plant(Vector3 pos)
     {
         Instantiate(plantPrefab, pos, Quaternion.identity);
+
+       //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
     }
 
     void OnMouseDown()

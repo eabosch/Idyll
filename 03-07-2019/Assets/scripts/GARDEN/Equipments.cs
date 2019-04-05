@@ -2,9 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable] //putting this line before a class defintion
+//will make it visible in the the inspector
+public class NPCRelationshipStatus
+{
+
+    public int gerardRelationshipQuality = 0;
+    public int nancyRelationshipQuality = 0;
+}
+
+
 public class Equipments : MonoBehaviour
 {
     public static Equipments instance;
+
+    //**public NPCRelationshipStatus relationshipGlobalVariable = new NPCRelationshipStatus();
+
 
     private Seeds selectedSeed;
 
