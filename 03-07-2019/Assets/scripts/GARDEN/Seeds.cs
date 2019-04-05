@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Seeds : MonoBehaviour
 {
-    public Equipments currentSeed;
-    public GameObject plant;
+    public GameObject plantPrefab;
+    //public string currentPlant;
 
     public void sew_plant(Vector3 pos)
     {
-        Instantiate(plant, pos, Quaternion.identity);
+        Instantiate(plantPrefab, pos, Quaternion.identity);
+
+       //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
     }
 
     void OnMouseDown()
     {
-        currentSeed.set_selected(GetComponent<Seeds>());
+        Equipments.instance.set_selected_seed(this);
     }
     // Start is called before the first frame update
     void Start()
@@ -26,5 +28,10 @@ public class Seeds : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public string get_plant_name()
+    {
+        return plantPrefab.name;
     }
 }

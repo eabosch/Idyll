@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnplantedRow : MonoBehaviour
+public class DisplaySeedOptionsMenu : MonoBehaviour
 {
-    //public Equipments currentSeed;
+    public void Open()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Close()
+    {
+        gameObject.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +23,5 @@ public class UnplantedRow : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void OnMouseDown()
-    {
-        Equipments.instance.get_selected_seed().sew_plant(this.gameObject.transform.position);
     }
 }
