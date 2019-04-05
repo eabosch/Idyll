@@ -19,6 +19,7 @@ public class UnplantedRow : MonoBehaviour
 
     void OnMouseDown()
     {
-        Equipments.instance.get_selected_seed().sew_plant(this.gameObject.transform.position);
+        Equipments.instance.get_selected_seed().sew_plant(this.gameObject.transform.position + new Vector3(0,0,.1f));
+        this.GetComponent<SpriteRenderer>().color = Color.red;
     }
 }

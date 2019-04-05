@@ -7,6 +7,15 @@ public class Seeds : MonoBehaviour
     public GameObject plantPrefab;
     //public string currentPlant;
 
+        [SerializeField]
+    SpriteRenderer displayIcon;
+
+    private void Awake()
+    {
+        if (displayIcon == null)
+            displayIcon = this.GetComponent<SpriteRenderer>();
+    }
+
     public void sew_plant(Vector3 pos)
     {
         Instantiate(plantPrefab, pos, Quaternion.identity);
@@ -17,6 +26,7 @@ public class Seeds : MonoBehaviour
     void OnMouseDown()
     {
         Equipments.instance.set_selected_seed(this);
+        displayIcon.color = Color.green;
     }
     // Start is called before the first frame update
     void Start()
@@ -27,7 +37,10 @@ public class Seeds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Equipments.instance.get_selected_seed() != this)
+        {
+            displayIcon.color = Color.white;
+        }
     }
 
     public string get_plant_name()
