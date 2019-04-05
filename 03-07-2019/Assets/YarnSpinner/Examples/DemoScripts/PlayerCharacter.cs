@@ -31,6 +31,25 @@ using System.Collections.Generic;
 namespace Yarn.Unity.Example {
     public class PlayerCharacter : MonoBehaviour {
 
+        // STUFF I ADDED
+        private Rigidbody2D myRigidbody;
+        private Animator myAnimator;
+        public GameObject playerCamera;
+
+        [SerializeField]
+        private float movementSpeed;
+
+        private bool facingRight;
+
+        private Vector3 offset;
+
+        private float cameraX;
+        private float playerX;
+
+
+        public GameObject player;
+        //STUFF I ADDED
+
         public float minPosition = -5.3f;
         public float maxPosition = 5.3f;
 
@@ -51,6 +70,32 @@ namespace Yarn.Unity.Example {
             Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);
         }
 
+        //STUFF I ADDED
+        void Start()
+        {
+            facingRight = false;
+            myRigidbody = GetComponent<Rigidbody2D>();
+            myAnimator = GetComponent<Animator>();
+
+            offset = playerCamera.transform.position - player.transform.position;
+
+            cameraX = playerCamera.transform.position.x;
+            playerX = player.transform.position.x;
+
+
+        }
+        //STUFF I ADDED
+
+        public IEnumerator nextPlane(Vector3 pos)
+        {
+
+            Vector3 newPos = new Vector3(pos.x, pos.y, player.transform.position.z);
+            yield return new WaitForSeconds(0.5f);
+            player.transform.position = newPos;
+
+        }
+
+
         /// Update is called once per frame
         void Update () {
 
@@ -58,6 +103,7 @@ namespace Yarn.Unity.Example {
             if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true) {
                 return;
             }
+
 
             // Move the player, clamping them to within the boundaries 
             // of the level.
@@ -71,10 +117,21 @@ namespace Yarn.Unity.Example {
 
             transform.position = newPosition;
 
+
+            float horizontal = Input.GetAxis("Horizontal");
+            HandleMovement(horizontal);
+
             // Detect if we want to start a conversation
             if (Input.GetKeyDown(KeyCode.Space)) {
                 CheckForNearbyNPC ();
             }
+
+            Flip(horizontal);
+        }
+
+        void LateUpdate()
+        {
+            playerCamera.transform.position = player.transform.position + offset;
         }
 
         /// Find all DialogueParticipants
@@ -92,6 +149,28 @@ namespace Yarn.Unity.Example {
             if (target != null) {
                 // Kick off the dialogue at this node.
                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
+                myAnimator.SetFloat("speed", (0));
+            }
+        }
+
+        private void HandleMovement(float horizontal)
+        {
+            myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y); //x = -1, y = 0;
+
+            myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+        }
+
+        private void Flip(float horizontal)
+        {
+            if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+            {
+                facingRight = !facingRight;
+
+                Vector3 theScale = transform.localScale;
+
+                theScale.x *= -1;
+
+                transform.localScale = theScale;
             }
         }
     }
