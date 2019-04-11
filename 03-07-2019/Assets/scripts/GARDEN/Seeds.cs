@@ -7,6 +7,7 @@ public class Seeds : MonoBehaviour
     public GameObject plantPrefab;
     //public string currentPlant;
 
+
         [SerializeField]
     SpriteRenderer displayIcon;
 
@@ -16,10 +17,14 @@ public class Seeds : MonoBehaviour
             displayIcon = this.GetComponent<SpriteRenderer>();
     }
 
-    public void sew_plant(Vector3 pos)
+    public Plant sew_plant(UnplantedRow destinationRow)
     {
-        Instantiate(plantPrefab, pos, Quaternion.identity);
+        Vector3 pos = destinationRow.transform.position;
+         GameObject newPlant = Instantiate(plantPrefab, pos, Quaternion.identity);
+        Plant plantScript = plantPrefab.GetComponent<Plant>();
+        plantScript.myRow = destinationRow;
 
+        return plantScript;
        //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
     }
 

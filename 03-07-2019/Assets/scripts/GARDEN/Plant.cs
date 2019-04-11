@@ -29,6 +29,10 @@ public class Plant : MonoBehaviour
     public float timeToBecomeSeedling = 2;
     public float timeToBecomeReadyToHarvest = 6;
 
+
+    public UnplantedRow myRow = null;
+   
+
     public int timeLimit1 = 0;
     public int timeLimit2 = 0;
     private int time = 0;
