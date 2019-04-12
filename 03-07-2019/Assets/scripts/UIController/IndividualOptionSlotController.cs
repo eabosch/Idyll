@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplaySeedOptionsMenu : MonoBehaviour
+public class IndividualOptionSlotController : MonoBehaviour
 {
-    bool inventoryMenuOn = false;
+    bool itemIconOn = false;
     public void Open()
     {
-        if (!inventoryMenuOn)
+        if (!itemIconOn)
         {
             gameObject.SetActive(true);
-            inventoryMenuOn = true;
-        } else
+            itemIconOn = true;
+        }
+        else
         {
             gameObject.SetActive(false);
-            inventoryMenuOn = false;
+            itemIconOn = false;
         }
     }
 
@@ -31,6 +32,6 @@ public class DisplaySeedOptionsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

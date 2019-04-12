@@ -24,6 +24,7 @@ public class Seeds : MonoBehaviour
         Plant plantScript = plantPrefab.GetComponent<Plant>();
         plantScript.myRow = destinationRow;
 
+
         return plantScript;
        //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
     }
