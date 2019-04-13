@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class IndividualOptionSlotController : MonoBehaviour
+
+public class SeedMenuController : MonoBehaviour
 {
-    [SerializeField] private DisplayItemOption displayItem;
+    [SerializeField] private DisplaySeedOptionsMenu displaySeedMenu;
     // Start is called before the first frame update
     void Start()
     {
-        displayItem.Close();
+        displaySeedMenu.Close();
     }
 
     // Update is called once per frame
@@ -19,7 +20,8 @@ public class IndividualOptionSlotController : MonoBehaviour
 
     public void OnOpenSettings()
     {
-        displayItem.Open();
-        Debug.Log("Open Item Display");
+        displaySeedMenu.Open();
+        Debug.Log("Open Seed Options");
     }
 }
+

@@ -8,7 +8,7 @@ public class Seeds : MonoBehaviour
     //public string currentPlant;
 
 
-        [SerializeField]
+    [SerializeField]
     SpriteRenderer displayIcon;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class Seeds : MonoBehaviour
     public Plant sew_plant(UnplantedRow destinationRow)
     {
         Vector3 pos = destinationRow.transform.position;
-         GameObject newPlant = Instantiate(plantPrefab, pos, Quaternion.identity);
+        GameObject newPlant = Instantiate(plantPrefab, pos, Quaternion.identity);
         Plant plantScript = plantPrefab.GetComponent<Plant>();
         plantScript.myRow = destinationRow;
 
