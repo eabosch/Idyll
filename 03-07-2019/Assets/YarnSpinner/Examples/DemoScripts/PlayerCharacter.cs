@@ -113,7 +113,7 @@ namespace Yarn.Unity.Example {
 
             var newPosition = transform.position;
             newPosition.x += movement;
-            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+            //newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
 
             transform.position = newPosition;
 
