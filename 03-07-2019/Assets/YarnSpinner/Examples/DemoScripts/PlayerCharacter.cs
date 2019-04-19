@@ -50,6 +50,8 @@ namespace Yarn.Unity.Example {
         public GameObject player;
         //STUFF I ADDED
 
+        public static PlayerCharacter instance;
+
         public float minPosition = -5.3f;
         public float maxPosition = 5.3f;
 
@@ -70,9 +72,15 @@ namespace Yarn.Unity.Example {
             Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);
         }
 
+        private void Awake()
+        {
+            instance = this;
+        }
+
         //STUFF I ADDED
         void Start()
         {
+            
             facingRight = false;
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
@@ -99,6 +107,12 @@ namespace Yarn.Unity.Example {
         /// Update is called once per frame
         void Update () {
 
+            float cheatSpeedMultiplier = 1;
+            if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
+            {
+                cheatSpeedMultiplier = 4;
+            }
+
             // Remove all player control when we're in dialogue
             if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true) {
                 return;
@@ -109,6 +123,7 @@ namespace Yarn.Unity.Example {
             // of the level.
             var movement = Input.GetAxis("Horizontal");
             movement += movementFromButtons;
+            movement *= cheatSpeedMultiplier;
             movement *= (moveSpeed * Time.deltaTime);
 
             var newPosition = transform.position;

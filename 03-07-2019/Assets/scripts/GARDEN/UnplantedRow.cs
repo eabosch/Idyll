@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnplantedRow : MonoBehaviour
 {
-
+    public int row = -1;
     static List<UnplantedRow> _allRows = new List<UnplantedRow>();
     public Plant currentPlant = null;
     //public Equipments currentSeed;
