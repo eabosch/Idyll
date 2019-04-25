@@ -2,6 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ 
+    To make the plant collectable:
+    - Add a rigidbody2d, set bodytyper to Kinematic (so it doesn't fall)
+    
+    - Add a child, named 'collectable collider', with a boxCollider2d, turn child object off
+    
+    - on the plant script, drag and drop 'collectable collider' on to the 'collectible collider' slot
+
+    - Find 'parsnip_item' in the project tab, duplicate it, change it's src image
+
+    - on the plant script, drag and drop the new prefab_item onto the 'Inventory Item Prefab' slot
+
+    - Apply changes to the plant prefab
+
+     */
+
+
 public enum PlantGrowthLevel
 {
     JustPlanted,
@@ -36,6 +54,10 @@ public class Plant : MonoBehaviour
     public int timeLimit1 = 0;
     public int timeLimit2 = 0;
     private int time = 0;
+
+    [Header("--Item Related--")]
+    public GameObject collectibleCollider;
+    public GameObject inventoryItemPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +84,10 @@ public class Plant : MonoBehaviour
         {
             currentGrowthLevel = PlantGrowthLevel.ReadyToHarvest;
             SetPlantGrowthLevel(currentGrowthLevel);
+            if (collectibleCollider != null)
+            {
+                collectibleCollider.SetActive(true);
+            }
         }
 
         if (currentGrowthLevel == PlantGrowthLevel.JustPlanted && growthCounter >= timeToBecomeSeedling)
@@ -116,8 +142,21 @@ public class Plant : MonoBehaviour
         deadPlant.gameObject.SetActive(desiredGrowthLevel == PlantGrowthLevel.Dead);
     }
 
+    void OnMouseDown()
+    {
+        //Debug.Log("Clicked!");
+        SingleInventorySlot slot = Equipments.instance.GetFreeHarvastableSlot();
+        if (slot != null)
+        {
+            GameObject harvestInventoryItem = GameObject.Instantiate(this.inventoryItemPrefab);
+            slot.SetCurrentItem(harvestInventoryItem);
+            harvestInventoryItem.transform.localScale = Vector3.one; //fix too huge items
+            Destroy(this.gameObject);
+        }
+    }
 
-private void DeletePlant(int t, GameObject plant)
+
+        private void DeletePlant(int t, GameObject plant)
     {
         if (t == time)
         {

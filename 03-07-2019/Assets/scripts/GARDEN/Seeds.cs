@@ -23,7 +23,7 @@ public class Seeds : MonoBehaviour
         GameObject newPlant = Instantiate(plantPrefab, pos, Quaternion.identity);
         Plant plantScript = plantPrefab.GetComponent<Plant>();
         plantScript.myRow = destinationRow;
-
+        Destroy(this.gameObject);//destroy seeds gameobject
 
         return plantScript;
        //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
@@ -31,8 +31,12 @@ public class Seeds : MonoBehaviour
 
     void OnMouseDown()
     {
-        Equipments.instance.set_selected_seed(this);
-        displayIcon.color = Color.green;
+        if (this.enabled)//box is checked in inspector
+        {
+            Equipments.instance.set_selected_seed(this);
+            displayIcon.color = Color.green;
+
+        }
     }
     // Start is called before the first frame update
     void Start()

@@ -7,6 +7,7 @@ public class DisplayItemOption : MonoBehaviour
     bool itemIconOn = true;
     public void Open()
     {
+        Debug.Log("Open()");
         if (itemIconOn)
         {
             gameObject.SetActive(false);
