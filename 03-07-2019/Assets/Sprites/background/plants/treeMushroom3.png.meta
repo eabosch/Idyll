@@ -1,12 +1,7 @@
 fileFormatVersion: 2
-guid: 1245ec4a6e5ed5844a436a32bed01e7a
+guid: cc85b30967db9704890fdca0ddb31edf
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: sprite-sheet_ripVanWinkle_0
-    21300002: sprite-sheet_ripVanWinkle_1
-    21300004: sprite-sheet_ripVanWinkle_eyes_0
-    21300006: sprite-sheet_ripVanWinkle_eyes_1
-    21300008: sprite-sheet_ripVanWinkle_eyes_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -45,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -131,111 +126,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: sprite-sheet_ripVanWinkle_0
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 1280
-        width: 334
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1de718277925a1d49980aab7a8268939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite-sheet_ripVanWinkle_1
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 1278
-        width: 332
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8810e0449d0338541beb5736924d5af6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite-sheet_ripVanWinkle_eyes_0
-      rect:
-        serializedVersion: 2
-        x: 732
-        y: 1277
-        width: 332
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5604e0e36de5384083e50ce14ce4934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite-sheet_ripVanWinkle_eyes_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 630
-        width: 334
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9da8eca1a4990924c97d1207c3eea631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite-sheet_ripVanWinkle_eyes_2
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 630
-        width: 332
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b04a8e0933229d946a3d9759ee765b84
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 031eb127674ee1a40b612cf087c40116
+    spriteID: 
     vertices: []
     indices: 
     edges: []
