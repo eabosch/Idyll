@@ -32,7 +32,11 @@ using UnityEngine.Serialization;
 namespace Yarn.Unity.Example {
     public class NPC : MonoBehaviour {
 
+        public GameObject character;
+
         public string characterName = "";
+
+        public GameObject NPCOptions;
 
         [FormerlySerializedAs("startNode")]
         public string talkToNode = "";
@@ -42,6 +46,9 @@ namespace Yarn.Unity.Example {
 
         // Use this for initialization
         void Start () {
+
+            NPCOptions.SetActive(true);
+
             if (scriptToLoad != null) {
                 FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
             }

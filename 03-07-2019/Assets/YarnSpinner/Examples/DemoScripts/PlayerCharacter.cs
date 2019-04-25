@@ -35,6 +35,8 @@ namespace Yarn.Unity.Example {
         private Rigidbody2D myRigidbody;
         private Animator myAnimator;
         public GameObject playerCamera;
+        
+        private GameObject NPCOptions;
 
         [SerializeField]
         private float movementSpeed;
@@ -80,7 +82,9 @@ namespace Yarn.Unity.Example {
         //STUFF I ADDED
         void Start()
         {
-            
+
+            NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
+
             facingRight = false;
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
@@ -106,6 +110,8 @@ namespace Yarn.Unity.Example {
 
         /// Update is called once per frame
         void Update () {
+
+            
 
             float cheatSpeedMultiplier = 1;
             if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
@@ -163,6 +169,7 @@ namespace Yarn.Unity.Example {
             });
             if (target != null) {
                 // Kick off the dialogue at this node.
+                NPCOptions.SetActive(false);
                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
                 myAnimator.SetFloat("speed", (0));
             }
@@ -188,5 +195,22 @@ namespace Yarn.Unity.Example {
                 transform.localScale = theScale;
             }
         }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.gameObject.CompareTag("NPC"))
+            { 
+                NPCOptions.SetActive(true);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("NPC"))
+            {
+                NPCOptions.SetActive(false);
+            }
+        }
+
     }
 }
