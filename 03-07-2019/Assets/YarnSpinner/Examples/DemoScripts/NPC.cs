@@ -49,9 +49,7 @@ namespace Yarn.Unity.Example {
 
             NPCOptions.SetActive(true);
 
-            if (scriptToLoad != null) {
-                FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
-            }
+            
 
         }
 
@@ -59,6 +57,15 @@ namespace Yarn.Unity.Example {
         void Update () {
 
         }
+
+        private void OnMouseDown()
+        {
+            if (scriptToLoad != null)
+            {
+                FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
+            }
+        }
+
     }
 
 }

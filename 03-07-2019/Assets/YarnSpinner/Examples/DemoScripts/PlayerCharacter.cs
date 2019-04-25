@@ -197,20 +197,21 @@ namespace Yarn.Unity.Example {
         }
 
         private void OnTriggerEnter2D(Collider2D other)
-        {
-            if(other.gameObject.CompareTag("NPC"))
-            { 
-                NPCOptions.SetActive(true);
-            }
-        }
+         {
+             if(other.gameObject.CompareTag("NPC"))
+             { 
+                 NPCOptions.SetActive(true);
+             }
+         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("NPC"))
-            {
-                NPCOptions.SetActive(false);
-            }
-        }
+         private void OnTriggerExit2D(Collider2D other)
+         {
+             if (other.gameObject.CompareTag("NPC"))
+             {
+                 NPCOptions.SetActive(false);
+             }
+         }
+
 
     }
 }
