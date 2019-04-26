@@ -82,19 +82,20 @@ namespace Yarn.Unity.Example {
         //STUFF I ADDED
         void Start()
         {
-
-            NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
-
-            facingRight = false;
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
+
+            
+
+            facingRight = false;
+
 
             offset = playerCamera.transform.position - player.transform.position;
 
             cameraX = playerCamera.transform.position.x;
             playerX = player.transform.position.x;
 
-
+            NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
         }
         //STUFF I ADDED
 

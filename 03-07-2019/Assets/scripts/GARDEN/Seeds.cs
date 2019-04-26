@@ -29,15 +29,23 @@ public class Seeds : MonoBehaviour
        //** Equipments.instance.relationshipGlobalVariable.gerardRelationshipQuality = -10;
     }
 
-    void OnMouseDown()
-    {
-        if (this.enabled)//box is checked in inspector
-        {
-            Equipments.instance.set_selected_seed(this);
-            displayIcon.color = Color.green;
 
-        }
+    public void UseItem()
+    {
+        Equipments.instance.set_equipped_tool(this.gameObject);//set_selected_seed(this);
+        displayIcon.color = Color.green;
     }
+
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("OMD Seeds");
+    //    if (this.enabled)//box is checked in inspector
+    //    {
+    //        Equipments.instance.set_selected_seed(this);
+    //        displayIcon.color = Color.green;
+
+    //    }
+    //}
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +55,7 @@ public class Seeds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Equipments.instance.get_selected_seed() != this)
+        if (Equipments.instance.get_equipped_seed() != this)
         {
             displayIcon.color = Color.white;
         }

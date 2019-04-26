@@ -16,7 +16,7 @@ public class CollectableInventoryItem : MonoBehaviour
     {
         //Equipments.instance.set_selected_seed(this);
         //displayIcon.color = Color.green;
-        Debug.Log("Hello");
+        Debug.Log("OMD InventoryItem");
 
         SingleInventorySlot slot = null;
         if (itemType == InventoryItemType.Seed)
