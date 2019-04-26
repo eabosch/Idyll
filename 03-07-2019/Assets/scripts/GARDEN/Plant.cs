@@ -44,6 +44,14 @@ public class Plant : MonoBehaviour
     public GameObject deadPlant;
 
     public float growthCounter = 0;
+    public float thirstDeathLevel = -5;
+
+    public bool IsThirsty()
+    {
+        return wateredAmount < 0;
+    }
+    public float wateredAmount = 0;
+
     public float timeToBecomeSeedling = 2;
     public float timeToBecomeReadyToHarvest = 6;
 
@@ -77,8 +85,13 @@ public class Plant : MonoBehaviour
         float friendlinessToCharacterScore = 1; //.5f if you were mean, 1.5f if you were nice
         currentGrowthRate += friendlinessToCharacterScore;
 
+        if (IsThirsty())
+        {
+            currentGrowthRate = 0; //Stop growing, if un-watered
+        }
 
         growthCounter += Time.deltaTime  * currentGrowthRate;
+        wateredAmount -= Time.deltaTime;
 
         if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= timeToBecomeReadyToHarvest)
         {
@@ -97,38 +110,27 @@ public class Plant : MonoBehaviour
         }
 
         bool plantIsAlive = currentGrowthLevel != PlantGrowthLevel.Dead;
-        bool plantShouldDie = Input.GetKeyDown(KeyCode.D);
-        if (plantIsAlive && plantShouldDie)
-        {
-            currentGrowthLevel = PlantGrowthLevel.Dead;
-            SetPlantGrowthLevel(currentGrowthLevel);
-        }
 
 
-        return;
-        if (time == timeLimit1)
-        {
-            
-             //seedling = Instantiate(Seedling) as GameObject;
-            //Instantiate(seedling, this.transform.position, Quaternion.identity);
-            //seedling.SetActive(true);
-            seedling.transform.position = new Vector3(this.transform.position.x, this.transform.position.y+ 1.5f, this.transform.position.z);
-            Debug.Log("parsnip changed");
-
-        } else if (time == timeLimit2)
-        {
-
-           // seedling.GetComponent<Renderer>().enabled = false;
-
-           // seedling.SetActive(false);
-            // DeletePlant(timeLimit2, seedling);
-            //readyToHarvest = Instantiate(ReadyToHarvest) as GameObject;
-            readyToHarvest.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
-           // Instantiate(readyToHarvest, this.transform.position, Quaternion.identity);
-
-        }
+        CheckForDeathUpdate();
         
         time++;
+    }
+
+    void CheckForDeathUpdate()
+    {
+        
+        if (currentGrowthLevel != PlantGrowthLevel.Dead)
+        {
+            bool plantShouldDie = currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel;//Input.GetKeyDown(KeyCode.D);
+
+            if (plantShouldDie)
+            {
+                currentGrowthLevel = PlantGrowthLevel.Dead;
+                SetPlantGrowthLevel(currentGrowthLevel);
+            }
+
+        }
     }
 
     public void SetPlantGrowthLevel(PlantGrowthLevel desiredGrowthLevel)
@@ -144,19 +146,47 @@ public class Plant : MonoBehaviour
 
     void OnMouseDown()
     {
-        //Debug.Log("Clicked!");
-        SingleInventorySlot slot = Equipments.instance.GetFreeHarvastableSlot();
-        if (slot != null)
+        // ---- CASE : Plant is Dead ---------------------------
+         if (currentGrowthLevel == PlantGrowthLevel.Dead)
         {
-            GameObject harvestInventoryItem = GameObject.Instantiate(this.inventoryItemPrefab);
-            slot.SetCurrentItem(harvestInventoryItem);
-            harvestInventoryItem.transform.localScale = Vector3.one; //fix too huge items
-            Destroy(this.gameObject);
+            bool okToDelete = Equipments.instance.tool_is_equipped(FarmToolType.Scythe)
+                || Equipments.instance.tool_is_equipped(FarmToolType.Shovel);
+            if (okToDelete)
+            {
+                Destroy(this.gameObject);
+            }
         }
+
+        // ---- CASE : Plant is not ready to harvest yet -------------------
+        else if(currentGrowthLevel != PlantGrowthLevel.ReadyToHarvest)
+        {
+            if (Equipments.instance.tool_is_equipped(FarmToolType.WateringCan))
+            {
+                this.wateredAmount = 10;//seconds, before becoming thirsty
+            }
+        }
+        // ---- CASE : Plant is ready to harvest ---------------------------
+        else if (currentGrowthLevel == PlantGrowthLevel.ReadyToHarvest)
+        {
+            bool okToHarvest = Equipments.instance.tool_is_equipped(FarmToolType.Scythe);
+            if (okToHarvest)
+            {
+                SingleInventorySlot slot = Equipments.instance.GetFreeHarvastableSlot();
+                if (slot != null)
+                {
+                    GameObject harvestInventoryItem = GameObject.Instantiate(this.inventoryItemPrefab);
+                    slot.SetCurrentItem(harvestInventoryItem);
+                    harvestInventoryItem.transform.localScale = Vector3.one; //fix too huge items
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+        
+
     }
 
 
-        private void DeletePlant(int t, GameObject plant)
+    private void DeletePlant(int t, GameObject plant)
     {
         if (t == time)
         {

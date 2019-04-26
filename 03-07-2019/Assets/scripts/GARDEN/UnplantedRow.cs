@@ -58,7 +58,10 @@ public class UnplantedRow : MonoBehaviour
     void OnMouseDown()
     {
         // Equipments.instance.get_selected_seed().sew_plant(this.gameObject.transform.position + new Vector3(0,0,.1f));
-        currentPlant = Equipments.instance.get_selected_seed().sew_plant(this);
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        Seeds equippedSeed = Equipments.instance.get_equipped_seed();
+        if (equippedSeed != null)
+        {
+           currentPlant = equippedSeed.sew_plant(this);
+        }
     }
 }

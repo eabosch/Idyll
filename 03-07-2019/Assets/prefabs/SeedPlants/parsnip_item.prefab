@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5247197058864369767}
+  - component: {fileID: 8334528992296544191}
   m_Layer: 0
-  m_Name: ParsnipItem
+  m_Name: parsnip_item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552037172233083853}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -28.090746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -36,6 +37,18 @@ RectTransform:
   m_AnchoredPosition: {x: -113.107704, y: 186.18916}
   m_SizeDelta: {x: 40.24, y: 49.03}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8334528992296544191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552037172233083853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2636dc67116aa3846b0c37ec1af05386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6207534434628232023
 GameObject:
   m_ObjectHideFlags: 0

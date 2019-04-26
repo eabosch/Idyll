@@ -17,15 +17,48 @@ public class Equipments : MonoBehaviour
 
 
     private Seeds selectedSeed;
+    public GameObject currentEquippedTool = null;
 
-    public void set_selected_seed(Seeds seed)
+    //public void set_selected_seed(Seeds seed)
+    //{
+    //    selectedSeed = seed;
+    //}
+
+    public void set_equipped_tool(GameObject currentTool)
     {
-        selectedSeed = seed;
+        currentEquippedTool = currentTool;
     }
 
-    public Seeds get_selected_seed()
+    public void unequip_tool()
     {
-        return selectedSeed;
+        currentEquippedTool = null;
+    }
+    
+
+    public Seeds get_equipped_seed()
+    {
+        if (currentEquippedTool != null)
+        {
+            return currentEquippedTool.GetComponent<Seeds>();//selectedSeed;
+        }
+        return null;
+    }
+
+    public FarmTool get_equipped_farm_tool()
+    {
+        if (currentEquippedTool != null)
+        {
+            return currentEquippedTool.GetComponent<FarmTool>();//selectedSeed;
+        }
+        return null;
+    }
+
+    public bool tool_is_equipped(FarmToolType farmToolType)
+    {
+        return 
+            get_equipped_farm_tool() != null 
+            && 
+            get_equipped_farm_tool().type == farmToolType;
     }
 
     //Awake gets called first,

@@ -26,4 +26,22 @@ public class SingleInventorySlot : MonoBehaviour
             Destroy(CurrentItem);
         }
     }
+
+    public void OnUseButtonClicked()
+    {
+        if (this.CurrentItem != null)
+        {
+            Seeds seedsScriptOnObject = CurrentItem.GetComponent<Seeds>();
+            if (seedsScriptOnObject != null)
+            {
+                seedsScriptOnObject.UseItem();
+            }
+
+            TradeableItem tradeableItem = CurrentItem.GetComponent<TradeableItem>();
+            if (tradeableItem != null)
+            {
+                tradeableItem.UseItem();
+            }
+        }
+    }
 }
