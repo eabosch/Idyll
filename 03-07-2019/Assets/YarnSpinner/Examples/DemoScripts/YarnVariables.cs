@@ -31,8 +31,10 @@ using Yarn.Unity;
 
 /// An extremely simple implementation of DialogueUnityVariableStorage, which
 /// just stores everything in a Dictionary.
-public class ExampleVariableStorage : VariableStorageBehaviour
+public class YarnVariables : VariableStorageBehaviour
 {
+
+    public static YarnVariables instance;
 
     /// Where we actually keeping our variables
     Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value> ();
@@ -60,6 +62,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour
     /// Reset to our default values when the game starts
     void Awake ()
     {
+        instance = this;
         ResetToDefaults ();
     }
 
@@ -149,6 +152,15 @@ public class ExampleVariableStorage : VariableStorageBehaviour
             }
             debugTextView.text = stringBuilder.ToString ();
         }
+    }
+
+    public bool NpcCanReceive()
+    {
+        if (variables.ContainsKey("$npc_can_receive"))
+        {
+            return variables["$npc_can_receive"].AsBool;
+        }
+        return false;
     }
 
 }

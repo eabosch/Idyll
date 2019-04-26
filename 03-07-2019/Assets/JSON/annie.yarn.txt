@@ -19,8 +19,9 @@ Annie: Fine, thank you.
 title: Annie.Hello
 tags: Annie.Hello
 colorID: 1
-position: -45,457
+position: -72,451
 ---
+<<set $annie_test to 999>>
 Strange Woman: Where are my manners? I'm Annie.
 
 Annie: I am glad for a new neighbor, honest. You just caught me a bit unawares.
@@ -69,8 +70,31 @@ Annie: Then this place will suit you just fine!
 title: Annie.nicePeople
 tags: Annie.nicePeople
 colorID: 1
-position: -84,971
+position: 69,1000
 ---
 Annie: How right you are!
 Annie: And the people around here are a pleasant bunch indeed!
+===
+title: Annie.Give
+tags: 
+colorID: 0
+position: 315,404
+---
+Annie: Oh word?
+
+Annie: Got anything good?
+<<set $npc_can_receive to true>>
+
+->Nope sorry
+
+Annie: :(
+===
+title: Annie.FirstGift
+tags: 
+colorID: 0
+position: 462,641
+---
+Annie: Hey thanks I love parsnips
+
+-> Cool.
 ===

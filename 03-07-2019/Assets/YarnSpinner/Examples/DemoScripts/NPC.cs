@@ -27,13 +27,19 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Serialization;
+using System;
 /// attached to the non-player characters, and stores the name of the
 /// Yarn node that should be run when you talk to them.
 namespace Yarn.Unity.Example {
-    public class NPC : MonoBehaviour {
+    public class NPC : MonoBehaviour
+    {
+        public enum State
+        { Idle, TalkingToPlayer, ReceivingItem}
 
-        public GameObject character;
+        public State state = State.Idle;
 
+        public float xInteractionOffset = 0;
+        public float interactDistance = 1.5f;
         public string characterName = "";
 
         public GameObject NPCOptions;
@@ -45,20 +51,63 @@ namespace Yarn.Unity.Example {
         public TextAsset scriptToLoad;
 
         // Use this for initialization
-        void Start () {
-
+        void Start ()
+        {
             NPCOptions.SetActive(true);
 
             if (scriptToLoad != null) {
                 FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
             }
 
+
         }
 
         // Update is called once per frame
-        void Update () {
+        void Update ()
+        {
+            bool interactButtonsShouldBeOn = false;
 
+            if (state == State.Idle)
+            {
+                Vector3 currentPlayerPosition = PlayerCharacter.instance.transform.position;
+                float xDistanceToPlayer = Mathf.Abs(currentPlayerPosition.x - (this.transform.position.x + xInteractionOffset));
+                interactButtonsShouldBeOn = xDistanceToPlayer < interactDistance;
+
+            }
+            else if (state == State.TalkingToPlayer)
+            {
+
+            }
+
+            if (NPCOptions.activeSelf != interactButtonsShouldBeOn)
+            {
+                NPCOptions.SetActive(interactButtonsShouldBeOn);
+            }
+        }
+        public void StartConversation()
+        {
+            this.state = State.TalkingToPlayer;
+            PlayerCharacter.instance.TalkToNPC(this);
+        }
+
+        public void StartGiveInteraction()
+        {
+            this.state = State.TalkingToPlayer;
+            PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Give");
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(this.transform.position + Vector3.right * xInteractionOffset, interactDistance);
+        }
+
+        internal void ReceiveItem(TradeableItem item)
+        {
+            PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".FirstGift");
         }
     }
+
+
 
 }

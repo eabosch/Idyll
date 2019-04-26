@@ -36,7 +36,8 @@ namespace Yarn.Unity.Example {
         private Animator myAnimator;
         public GameObject playerCamera;
         
-        private GameObject NPCOptions;
+        [SerializeField]
+        GameObject NPCOptions;
 
         [SerializeField]
         private float movementSpeed;
@@ -62,6 +63,8 @@ namespace Yarn.Unity.Example {
         public float interactionRadius = 2.0f;
 
         public float movementFromButtons {get;set;}
+
+        public NPC currentConversationPartner = null;
 
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected() {
@@ -95,7 +98,7 @@ namespace Yarn.Unity.Example {
             cameraX = playerCamera.transform.position.x;
             playerX = player.transform.position.x;
 
-            NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
+            //NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
         }
         //STUFF I ADDED
 
@@ -143,10 +146,10 @@ namespace Yarn.Unity.Example {
             float horizontal = Input.GetAxis("Horizontal");
             HandleMovement(horizontal);
 
-            // Detect if we want to start a conversation
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                CheckForNearbyNPC ();
-            }
+            //// Detect if we want to start a conversation
+            //if (Input.GetKeyDown(KeyCode.Space)) {
+            //    CheckForNearbyNPC ();
+            //}
 
             Flip(horizontal);
         }
@@ -162,18 +165,46 @@ namespace Yarn.Unity.Example {
          */
         public void CheckForNearbyNPC ()
         {
-            var allParticipants = new List<NPC> (FindObjectsOfType<NPC> ());
-            var target = allParticipants.Find (delegate (NPC p) {
+            List<NPC> allParticipants = new List<NPC> (FindObjectsOfType<NPC> ());
+            NPC target = allParticipants.Find (delegate (NPC p) {
                 return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
                 (p.transform.position - this.transform.position)// is in range?
                 .magnitude <= interactionRadius;
             });
             if (target != null) {
                 // Kick off the dialogue at this node.
-                NPCOptions.SetActive(false);
-                FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
-                myAnimator.SetFloat("speed", (0));
+                TalkToNPC(target);
             }
+        }
+
+        public void OnItemUsed(TradeableItem item)
+        {
+            if (currentConversationPartner != null 
+                &&
+                YarnVariables.instance.NpcCanReceive())
+                //&& currentConversationPartner.state == NPC.State.ReceivingItem)
+            {
+                Debug.Log("Gave " + item.name + " to " + currentConversationPartner.name);
+
+                currentConversationPartner.ReceiveItem(item);
+                //TalkToNPC(NPC target, string overrideTalkNode = null)
+            }
+        }
+
+        public void TalkToNPC(NPC target, string overrideTalkNode = null)
+        {
+            currentConversationPartner = target;
+            //NPCOptions.SetActive(false);
+            if (overrideTalkNode == null)
+            {
+                FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
+            }
+            else
+            {
+                FindObjectOfType<DialogueRunner>().StartDialogue(overrideTalkNode);
+            }
+            myAnimator.SetFloat("speed", (0));
+
         }
 
         private void HandleMovement(float horizontal)
@@ -201,7 +232,7 @@ namespace Yarn.Unity.Example {
         {
             if(other.gameObject.CompareTag("NPC"))
             { 
-                NPCOptions.SetActive(true);
+               // NPCOptions.SetActive(true);
             }
         }
 
@@ -209,7 +240,7 @@ namespace Yarn.Unity.Example {
         {
             if (other.gameObject.CompareTag("NPC"))
             {
-                NPCOptions.SetActive(false);
+               // NPCOptions.SetActive(false);
             }
         }
 
