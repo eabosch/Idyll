@@ -1,0 +1,44 @@
+title: Rip.Start
+tags: 
+colorID: 0
+position: 571,252
+---
+Vagrant: *yawn*
+
+Vagrant: Ah... hallo...
+
+Vagrant: Wie ben je?
+
+[[ Um... come again? | Rip.englishIsFine]]
+[[ Een nieuwe buurman. | Rip.justWokeUp]]
+===
+title: Rip.englishIsFine
+tags: Rip.englishIsFine
+colorID: 0
+position: 381,669
+---
+Vagrant: Oh... I'm sorry. Just woke up. I'm still getting my bearings.
+
+Vagrant: Goedemorgen, I suppose. 
+
+Vagrant: Is it even still morning?
+
+Vagrant: I'm sorry...
+
+[[ It's alright. Take your time. | Rip.wakingUp]]
+[[ How long were you out for? | Rip.longNap]]
+===
+title: Rip.justWokeUp
+tags: Rip.justWokeUp
+colorID: 0
+position: 666,658
+---
+Vagrant: !!
+
+Vagrant: Je kunt Nederlands spreken??
+-> ... Not much.
+
+Vagrant: Ah... that's alright. Engels is ook prima.
+
+Vagran: I do appreciate the effort, though.
+===
