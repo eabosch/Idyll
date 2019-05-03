@@ -6,7 +6,7 @@ public class PlayerLoopingBackgroundTeleporter : MonoBehaviour
 {
     public Transform leftTile;
     public Transform rightile;
-    public PlayerCharacter playerCharacter;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,7 @@ public class PlayerLoopingBackgroundTeleporter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerCharacter playerCharacter = PlayerCharacter.instance;
         float worldCenterX =
         //    this.transform.position.x; //this one, a little safer if your pivot is roughly at the center of the background
         (rightile.transform.position.x + leftTile.transform.position.x) / 2;

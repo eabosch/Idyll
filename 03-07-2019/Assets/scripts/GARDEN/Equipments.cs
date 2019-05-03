@@ -15,6 +15,9 @@ public class Equipments : MonoBehaviour
     public SingleInventorySlot[] _harvestableInventoryList;
     //**public NPCRelationshipStatus relationshipGlobalVariable = new NPCRelationshipStatus();
 
+    [SerializeField]
+    GameObject[] _seedPrefabs;
+    List<GameObject> _allInvetoryItemPrefabs = new List<GameObject>();
 
     private Seeds selectedSeed;
     public GameObject currentEquippedTool = null;
@@ -23,6 +26,44 @@ public class Equipments : MonoBehaviour
     //{
     //    selectedSeed = seed;
     //}
+
+    //Awake gets called first,
+    private void Awake()
+    {
+        instance = this;
+
+        _seedInventorySlots = _seedSlotsParent.GetComponentsInChildren<SingleInventorySlot>(true);
+        _harvestableInventoryList = _harvestableListParent.GetComponentsInChildren<SingleInventorySlot>(true);
+
+    
+        _seedPrefabs = Resources.LoadAll<GameObject>("Seeds");
+      
+        _allInvetoryItemPrefabs.AddRange(_seedPrefabs);
+
+        //_birdSongs = Resources.LoadAll<GameObject>("BirdSongs");
+        //_allInvetoryItemPrefabs.AddRange(_birdSongs);
+    }
+
+    GameObject getItemPrefabByName(string prefabName)
+    {
+        foreach (GameObject itemPrefab in _allInvetoryItemPrefabs)
+        {
+            if (itemPrefab.name == prefabName)
+            {
+                return itemPrefab;
+            }
+        }
+
+        return null;
+    }
+
+    public void AddItemToPlayerInventory(string itemName)
+    {
+        GameObject itemPrefab = getItemPrefabByName(itemName);
+        GameObject itemCopy = GameObject.Instantiate(itemPrefab);
+        itemCopy.name = "WE DID IT";
+        itemCopy.GetComponent<CollectableInventoryItem>().CollectItemIfPossible();
+    }
 
     public void set_equipped_tool(GameObject currentTool)
     {
@@ -61,15 +102,7 @@ public class Equipments : MonoBehaviour
             get_equipped_farm_tool().type == farmToolType;
     }
 
-    //Awake gets called first,
-    private void Awake()
-    {
-        instance = this;
 
-        _seedInventorySlots = _seedSlotsParent.GetComponentsInChildren<SingleInventorySlot>(true);
-        _harvestableInventoryList = _harvestableListParent.GetComponentsInChildren<SingleInventorySlot>(true);
-
-    }
 
     public SingleInventorySlot GetFreeSeedInventorySlot()
     {

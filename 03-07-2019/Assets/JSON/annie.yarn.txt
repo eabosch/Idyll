@@ -8,6 +8,8 @@ Strange Woman: ...hello.
 
 Strange Woman:  A new face... that's rare.
 
+<<receiveItem Player parsnip_seed>>
+
 [[It's nice to meet you, ma'am|Annie.Hello]]
 
 <<else>> 
@@ -63,22 +65,29 @@ Annie: My favorite method of clearing my mind. And the birdsong is so pleasant.
 title: Annie.suitsYou
 tags: Annie.suitsYou
 colorID: 1
-position: -295,972
+position: -255,1029
 ---
 Annie: Then this place will suit you just fine!
 ===
 title: Annie.nicePeople
 tags: Annie.nicePeople
 colorID: 1
-position: 69,1000
+position: -16,1025
 ---
 Annie: How right you are!
 Annie: And the people around here are a pleasant bunch indeed!
+Annie: Speaking of new neighbors, I should get you a housewarming gift!
+->That's alright, really...
+Annie: Don't be silly! I don't have much, sadly...
+Annie: But would this do?
+
+[[What is it? | Annie.Parsnip]]
+
 ===
 title: Annie.Give
 tags: 
 colorID: 0
-position: 315,404
+position: 400,379
 ---
 Annie: Oh word?
 
@@ -91,10 +100,20 @@ Annie: :(
 ===
 title: Annie.FirstGift
 tags: 
-colorID: 0
+colorID: 1
 position: 462,641
 ---
 Annie: Hey thanks I love parsnips
 
 -> Cool.
+===
+title: Annie.Parsnip
+tags: Annie.Parsnip
+colorID: 1
+position: 42,1308
+---
+Annie: It's a parsnip!
+Annie: My favorite!
+Annie: ... are you sure you're cut out for this farming stuff?
+
 ===

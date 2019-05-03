@@ -14,6 +14,11 @@ public class CollectableInventoryItem : MonoBehaviour
 
     void OnMouseDown()
     {
+        CollectItemIfPossible();
+    }
+
+    public void CollectItemIfPossible()
+    {
         //Equipments.instance.set_selected_seed(this);
         //displayIcon.color = Color.green;
         Debug.Log("OMD InventoryItem");
@@ -31,13 +36,13 @@ public class CollectableInventoryItem : MonoBehaviour
         {
             slot = Equipments.instance.GetFreeHarvastableSlot();
         }
-       
+
         if (slot != null)
         {
             slot.SetCurrentItem(this.gameObject);
             //---------------
             usableItem.enabled = true;
-            
+
             Destroy(this);
         }
         else

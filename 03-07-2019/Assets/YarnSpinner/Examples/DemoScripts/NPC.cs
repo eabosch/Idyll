@@ -34,7 +34,7 @@ namespace Yarn.Unity.Example {
     public class NPC : MonoBehaviour
     {
         public enum State
-        { Idle, TalkingToPlayer, ReceivingItem}
+        { Idle, TalkingToPlayer, ReceivingItem, GivingItem}
 
         public State state = State.Idle;
 
@@ -94,6 +94,12 @@ namespace Yarn.Unity.Example {
         {
             this.state = State.TalkingToPlayer;
             PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Give");
+        }
+
+        public void StartReceiveInteraction()
+        {
+            this.state = State.ReceivingItem;
+            PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Parsnip");
         }
 
         private void OnDrawGizmosSelected()

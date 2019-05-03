@@ -27,6 +27,7 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Yarn.Unity;
 
 namespace Yarn.Unity.Example {
     public class PlayerCharacter : MonoBehaviour {
@@ -35,9 +36,6 @@ namespace Yarn.Unity.Example {
         private Rigidbody2D myRigidbody;
         private Animator myAnimator;
         public GameObject playerCamera;
-        
-        [SerializeField]
-        GameObject NPCOptions;
 
         [SerializeField]
         private float movementSpeed;
@@ -86,7 +84,7 @@ namespace Yarn.Unity.Example {
         void Start()
         {
             myRigidbody = GetComponent<Rigidbody2D>();
-            myAnimator = GetComponent<Animator>();
+            myAnimator = GetComponentInChildren<Animator>();
 
             
 
@@ -191,6 +189,7 @@ namespace Yarn.Unity.Example {
             }
         }
 
+
         public void TalkToNPC(NPC target, string overrideTalkNode = null)
         {
             currentConversationPartner = target;
@@ -244,5 +243,13 @@ namespace Yarn.Unity.Example {
             }
         }
 
+        //public SingleInventorySlot receivedItem;
+
+        //[YarnCommand("receiveItem")]
+        //public void ReceiveItem(string itemName)
+        //{
+        //    Debug.Log("You've received " + itemName + "from " + currentConversationPartner.name);
+        //    Equipments.instance.AddItemToPlayerInventory(itemName);
+        //}
     }
 }
