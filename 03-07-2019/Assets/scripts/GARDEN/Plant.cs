@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 /*
  
     To make the plant collectable:
@@ -28,9 +28,17 @@ public enum PlantGrowthLevel
     Dead
 }
 
-
+/*
+public enum PlantWateringPeriod
+{
+    PlantedToSeedlingPeriod,
+    SeedlingToHarvestPeriod,
+}
+*/
 public class Plant : MonoBehaviour
 {
+    // reminder for player to water plants
+    public Text reminderText;
     public PlantGrowthLevel currentGrowthLevel = PlantGrowthLevel.JustPlanted;
 
 
@@ -48,20 +56,38 @@ public class Plant : MonoBehaviour
 
     public bool IsThirsty()
     {
-        return wateredAmount < 0;
+        return wateredAmount < 0 && currentGrowthLevel != PlantGrowthLevel.Dead;
     }
+
+    public float getWaterLevel()
+    {
+        return wateredAmount;
+    }
+ 
     public float wateredAmount = 0;
 
-    public float timeToBecomeSeedling = 2;
-    public float timeToBecomeReadyToHarvest = 6;
+
+    // time to grow to the next phase
+    public float timeToBecomeSeedling = 4;
+    public float timeToBecomeReadyToHarvest = 8;
+
+
+    // time to water plant
+    /*
+    public float timeToWaterForPlantToSeedling = 4;
+    public float timeToWaterForSeedlingToHarvest = 10;
+    */
 
 
     public UnplantedRow myRow = null;
-   
 
+    /*
     public int timeLimit1 = 0;
     public int timeLimit2 = 0;
+    */
     private int time = 0;
+    
+
 
     [Header("--Item Related--")]
     public GameObject collectibleCollider;
@@ -107,6 +133,8 @@ public class Plant : MonoBehaviour
         {
             currentGrowthLevel = PlantGrowthLevel.Seedling;
             SetPlantGrowthLevel(currentGrowthLevel);
+
+           // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
         }
 
         bool plantIsAlive = currentGrowthLevel != PlantGrowthLevel.Dead;
@@ -119,10 +147,20 @@ public class Plant : MonoBehaviour
 
     void CheckForDeathUpdate()
     {
-        
+        /*
+        if(currentGrowthLevel!= PlantGrowthLevel.JustPlanted && wateredAmount < -1.0f)
+        {
+            currentGrowthLevel = PlantGrowthLevel.Dead;
+
+        }
+        */
+
+    
+
         if (currentGrowthLevel != PlantGrowthLevel.Dead)
         {
-            bool plantShouldDie = currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel;//Input.GetKeyDown(KeyCode.D);
+
+                bool plantShouldDie = currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel;//Input.GetKeyDown(KeyCode.D);
 
             if (plantShouldDie)
             {
@@ -162,7 +200,7 @@ public class Plant : MonoBehaviour
         {
             if (Equipments.instance.tool_is_equipped(FarmToolType.WateringCan))
             {
-                this.wateredAmount = 10;//seconds, before becoming thirsty
+                this.wateredAmount = 3;//seconds, before becoming thirsty
             }
         }
         // ---- CASE : Plant is ready to harvest ---------------------------
@@ -192,6 +230,11 @@ public class Plant : MonoBehaviour
         {
             Destroy(plant);
         }
+    }
+
+    public void RemindPlayerToWaterPlant()
+    {
+        reminderText.text = "Please Water Plant";
     }
 }
 
