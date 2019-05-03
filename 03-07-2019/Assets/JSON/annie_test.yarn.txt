@@ -1,0 +1,25 @@
+title: Annie
+tags: 
+colorID: 4
+position: 150,182
+---
+
+Strange Woman: ...hello.
+
+Strange Woman:  A new face... that's rare.
+
+[[Its nice to meet you, mam|Annie.Hello]]
+
+
+Annie: Hello again. How have you been?
+Player: Oh not bad. Yourself?
+Annie: Fine, thank you.
+
+===
+title: Annie.Hello
+tags: 
+colorID: 0
+position: -63,466
+---
+Annie: aaaaaaaaaaaaaa
+===

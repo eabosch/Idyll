@@ -48,7 +48,7 @@ namespace Yarn.Unity.Example {
         private float playerX;
 
 
-        public GameObject player;
+  
         //STUFF I ADDED
 
         public static PlayerCharacter instance;
@@ -91,10 +91,10 @@ namespace Yarn.Unity.Example {
             facingRight = false;
 
 
-            offset = playerCamera.transform.position - player.transform.position;
+            offset = playerCamera.transform.position - this.transform.position;
 
             cameraX = playerCamera.transform.position.x;
-            playerX = player.transform.position.x;
+            playerX = this.transform.position.x;
 
             //NPCOptions = GameObject.FindWithTag("NPC").GetComponent<NPC>().NPCOptions;
         }
@@ -103,9 +103,9 @@ namespace Yarn.Unity.Example {
         public IEnumerator nextPlane(Vector3 pos)
         {
 
-            Vector3 newPos = new Vector3(pos.x, pos.y, player.transform.position.z);
+            Vector3 newPos = new Vector3(pos.x, pos.y, this.transform.position.z);
             yield return new WaitForSeconds(0.5f);
-            player.transform.position = newPos;
+            this.transform.position = newPos;
 
         }
 
@@ -154,7 +154,7 @@ namespace Yarn.Unity.Example {
 
         void LateUpdate()
         {
-            playerCamera.transform.position = player.transform.position + offset;
+            playerCamera.transform.position = this.transform.position + offset;
         }
 
         /// Find all DialogueParticipants
@@ -246,10 +246,10 @@ namespace Yarn.Unity.Example {
         //public SingleInventorySlot receivedItem;
 
         //[YarnCommand("receiveItem")]
-        //public void ReceiveItem(string itemName)
-        //{
-        //    Debug.Log("You've received " + itemName + "from " + currentConversationPartner.name);
-        //    Equipments.instance.AddItemToPlayerInventory(itemName);
-        //}
+        public void ReceiveItem(string itemName)
+        {
+            Debug.Log("You've received " + itemName + "from " + currentConversationPartner.name);
+            Equipments.instance.AddItemToPlayerInventory(itemName);
+        }
     }
 }

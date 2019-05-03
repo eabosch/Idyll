@@ -242,7 +242,9 @@ namespace Yarn.Unity
 
                     if (DispatchCommand(commandResult.command.text) == true) {
                         // command was dispatched
-                    } else {
+                    }
+                    else
+                    {
                         yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
                     }
 
