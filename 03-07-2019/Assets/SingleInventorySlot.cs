@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SingleInventorySlot : MonoBehaviour
 {
-    public GameObject CurrentItem = null;
+    private void Awake()
+    {
+        CurrentItem = this.GetComponentInChildren<GenericInventoryItem>();
+    }
 
-    public void SetCurrentItem(GameObject item)
+    public GenericInventoryItem CurrentItem = null;
+
+    public void SetCurrentItem(GenericInventoryItem item)
     {
         this.CurrentItem = item;
         item.transform.position = this.transform.position;

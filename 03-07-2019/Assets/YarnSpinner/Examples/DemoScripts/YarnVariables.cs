@@ -124,6 +124,12 @@ public class YarnVariables : VariableStorageBehaviour
         variables[variableName] = new Yarn.Value(value);
     }
 
+    public void SetValue(string variableName, string value)
+    {
+        // Copy this value into our list
+        variables[variableName] = new Yarn.Value(value);
+    }
+
     /// Get a variable's value
     public override Yarn.Value GetValue (string variableName)
     {

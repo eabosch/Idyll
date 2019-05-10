@@ -63,7 +63,7 @@ public class Plant : MonoBehaviour
     {
         return wateredAmount;
     }
- 
+
     public float wateredAmount = 0;
 
 
@@ -86,7 +86,7 @@ public class Plant : MonoBehaviour
     public int timeLimit2 = 0;
     */
     private int time = 0;
-    
+
 
 
     [Header("--Item Related--")]
@@ -116,7 +116,7 @@ public class Plant : MonoBehaviour
             currentGrowthRate = 0; //Stop growing, if un-watered
         }
 
-        growthCounter += Time.deltaTime  * currentGrowthRate;
+        growthCounter += Time.deltaTime * currentGrowthRate;
         wateredAmount -= Time.deltaTime;
 
         if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= timeToBecomeReadyToHarvest)
@@ -134,14 +134,14 @@ public class Plant : MonoBehaviour
             currentGrowthLevel = PlantGrowthLevel.Seedling;
             SetPlantGrowthLevel(currentGrowthLevel);
 
-           // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
+            // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
         }
 
         bool plantIsAlive = currentGrowthLevel != PlantGrowthLevel.Dead;
 
 
         CheckForDeathUpdate();
-        
+
         time++;
     }
 
@@ -155,13 +155,13 @@ public class Plant : MonoBehaviour
         }
         */
 
-    
+
 
         if (currentGrowthLevel != PlantGrowthLevel.Dead)
         {
-
-                bool plantShouldDie = currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel;//Input.GetKeyDown(KeyCode.D);
-
+            // bool plantShouldDie = (currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel);
+            
+            bool plantShouldDie = (currentGrowthLevel == PlantGrowthLevel.Seedling && wateredAmount < thirstDeathLevel);
             if (plantShouldDie)
             {
                 currentGrowthLevel = PlantGrowthLevel.Dead;
@@ -170,6 +170,7 @@ public class Plant : MonoBehaviour
 
         }
     }
+
 
     public void SetPlantGrowthLevel(PlantGrowthLevel desiredGrowthLevel)
     {
@@ -213,7 +214,7 @@ public class Plant : MonoBehaviour
                 if (slot != null)
                 {
                     GameObject harvestInventoryItem = GameObject.Instantiate(this.inventoryItemPrefab);
-                    slot.SetCurrentItem(harvestInventoryItem);
+                    slot.SetCurrentItem(harvestInventoryItem.GetComponent<GenericInventoryItem>());
                     harvestInventoryItem.transform.localScale = Vector3.one; //fix too huge items
                     Destroy(this.gameObject);
                 }
@@ -232,9 +233,5 @@ public class Plant : MonoBehaviour
         }
     }
 
-    public void RemindPlayerToWaterPlant()
-    {
-        reminderText.text = "Please Water Plant";
-    }
 }
 

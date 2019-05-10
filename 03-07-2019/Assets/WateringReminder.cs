@@ -19,7 +19,7 @@ public class WateringReminder : MonoBehaviour
             {
                 _reminderText.text = "water to start";
             }
-            else
+            else if (_plant.currentGrowthLevel != PlantGrowthLevel.ReadyToHarvest)
             {
                 _reminderText.text = "Needs water!";
             }

@@ -36,7 +36,21 @@ namespace Yarn.Unity.Example {
         public enum State
         { Idle, TalkingToPlayer, ReceivingItem, GivingItem}
 
-        public State state = State.Idle;
+        public State _state = State.Idle;
+
+        public State state
+        {
+            get
+            {
+                return _state;
+            }
+
+            set
+            {
+                Debug.Log("state changed from " + _state + " to " + value);
+                _state = value;
+            }
+        }
 
         public float xInteractionOffset = 0;
         public float interactDistance = 1.5f;
@@ -76,7 +90,10 @@ namespace Yarn.Unity.Example {
             }
             else if (state == State.TalkingToPlayer)
             {
-
+                if (!YarnHelper.isDialogueRunning)
+                {
+                    state = State.Idle;
+                }
             }
 
             if (NPCOptions.activeSelf != interactButtonsShouldBeOn)
@@ -96,12 +113,6 @@ namespace Yarn.Unity.Example {
             PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Give");
         }
 
-        public void StartReceiveInteraction()
-        {
-            this.state = State.ReceivingItem;
-            PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Parsnip");
-        }
-
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.magenta;
@@ -110,7 +121,10 @@ namespace Yarn.Unity.Example {
 
         internal void ReceiveItem(TradeableItem item)
         {
-            PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".FirstGift");
+            //
+            string destinationYarnNode = this.characterName + ".Receives";
+            EZYarnVariables.ItemForNpc = item.itemName;
+            PlayerCharacter.instance.TalkToNPC(this, destinationYarnNode);
         }
     }
 

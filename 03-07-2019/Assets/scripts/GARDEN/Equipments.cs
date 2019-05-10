@@ -11,8 +11,12 @@ public class Equipments : MonoBehaviour
 
     public Transform _seedSlotsParent;
     public Transform _harvestableListParent;
+    public Transform _birdsongListParent;
     public SingleInventorySlot[] _seedInventorySlots;
     public SingleInventorySlot[] _harvestableInventoryList;
+    public SingleInventorySlot[] _birdsongInventoryList;
+    List<SingleInventorySlot> _allInventorySlotsAllTypes = new List<SingleInventorySlot>();
+
     //**public NPCRelationshipStatus relationshipGlobalVariable = new NPCRelationshipStatus();
 
     [SerializeField]
@@ -34,8 +38,12 @@ public class Equipments : MonoBehaviour
 
         _seedInventorySlots = _seedSlotsParent.GetComponentsInChildren<SingleInventorySlot>(true);
         _harvestableInventoryList = _harvestableListParent.GetComponentsInChildren<SingleInventorySlot>(true);
+        _birdsongInventoryList = _birdsongListParent.GetComponentsInChildren<SingleInventorySlot>(true);
 
-    
+        _allInventorySlotsAllTypes.AddRange(_seedInventorySlots);
+        _allInventorySlotsAllTypes.AddRange(_harvestableInventoryList);
+        _allInventorySlotsAllTypes.AddRange(_birdsongInventoryList);
+
         _seedPrefabs = Resources.LoadAll<GameObject>("Seeds");
       
         _allInvetoryItemPrefabs.AddRange(_seedPrefabs);
@@ -61,8 +69,21 @@ public class Equipments : MonoBehaviour
     {
         GameObject itemPrefab = getItemPrefabByName(itemName);
         GameObject itemCopy = GameObject.Instantiate(itemPrefab);
-        itemCopy.name = "WE DID IT";
+        itemCopy.name = itemName;
         itemCopy.GetComponent<CollectableInventoryItem>().CollectItemIfPossible();
+    }
+
+    public void RemoveItemFromPlayerInventory(string itemName)
+    {
+        foreach (SingleInventorySlot slot in _allInventorySlotsAllTypes)
+        {
+            if (slot.CurrentItem != null && slot.CurrentItem.itemName == itemName)
+            {
+                //Destroy(slot.CurrentItem);// <=== this line would only destroy the script, not the whole game object!
+                Destroy(slot.CurrentItem.gameObject);
+                break;//stop going through the list, in case we have more than 1 item with that name
+            }
+        }
     }
 
     public void set_equipped_tool(GameObject currentTool)
@@ -89,7 +110,7 @@ public class Equipments : MonoBehaviour
     {
         if (currentEquippedTool != null)
         {
-            return currentEquippedTool.GetComponent<FarmTool>();//selectedSeed;
+            return currentEquippedTool.GetComponent<FarmTool>();//selectedFarmTool;
         }
         return null;
     }
@@ -112,6 +133,11 @@ public class Equipments : MonoBehaviour
     public SingleInventorySlot GetFreeHarvastableSlot()
     {
         return GetFreeSlot(_harvestableInventoryList);
+    }
+
+    public SingleInventorySlot GetFreeBirdsongSlot()
+    {
+        return GetFreeSlot(_birdsongInventoryList);
     }
 
     SingleInventorySlot GetFreeSlot(SingleInventorySlot[] slotList)

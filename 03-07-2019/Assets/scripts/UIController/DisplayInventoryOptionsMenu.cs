@@ -9,24 +9,24 @@ public class DisplayInventoryOptionsMenu : MonoBehaviour
     {
         if (!inventoryMenuOn)
         {
-            gameObject.SetActive(true);
-            inventoryMenuOn = true;
+            SetOpen(true);
         }
         else
         {
-            gameObject.SetActive(false);
-            inventoryMenuOn = false;
+            SetOpen(false);
         }
     }
 
-    public void Close()
+    public void SetOpen(bool open)
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(open);
+        inventoryMenuOn = open;
     }
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame

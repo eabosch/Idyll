@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seeds : MonoBehaviour
+public class Seeds : GenericInventoryItem
 {
     public GameObject plantPrefab;
     //public string currentPlant;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1207033457}
   - component: {fileID: 1207033458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: collectable collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 1726319750579370832}
   - component: {fileID: 1267385852843715498}
   - component: {fileID: 6856089749185545538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pivot_helper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,6 +134,120 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &892402769528105336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5923503432335328949}
+  - component: {fileID: 5280093624180821652}
+  - component: {fileID: 7264039331394170187}
+  - component: {fileID: 8233954927981522003}
+  - component: {fileID: 3374209881781942246}
+  m_Layer: 9
+  m_Name: PlantInfoCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5923503432335328949
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892402769528105336}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children:
+  - {fileID: 2297944430326440661}
+  m_Father: {fileID: 6726102980284034403}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.9, y: 2.88}
+  m_SizeDelta: {x: 574.276, y: 370.776}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &5280093624180821652
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892402769528105336}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -896579877
+  m_SortingOrder: 1000
+  m_TargetDisplay: 0
+--- !u!114 &7264039331394170187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892402769528105336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!114 &8233954927981522003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892402769528105336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &3374209881781942246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892402769528105336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a79584b516200f449fbd7bdf144bd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plant: {fileID: 7946161981903103302}
+  _reminderText: {fileID: 7005939450439625079}
 --- !u!1 &1797903788194854369
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +260,7 @@ GameObject:
   - component: {fileID: 2101885959416482205}
   - component: {fileID: 1679407916565862842}
   - component: {fileID: 144461461241936187}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +318,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0184b0293b798cb4ca3631cda9e94a43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d76e8ba4a113324ea876257ea9571b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,7 +346,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.61, y: 3.89}
+    oldSize: {x: 4.61, y: 3.81}
     newSize: {x: 4.36, y: 2.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -276,7 +390,7 @@ GameObject:
   - component: {fileID: 2376205640045974357}
   - component: {fileID: 4736463443901775025}
   - component: {fileID: 581362622296244192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ready to harvest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +519,7 @@ GameObject:
   - component: {fileID: 4979983552442065729}
   - component: {fileID: 7175390584421209172}
   - component: {fileID: 3547936759894239118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: seed mound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +626,7 @@ GameObject:
   - component: {fileID: 8870304950076564188}
   - component: {fileID: 3763311004931057763}
   - component: {fileID: 6296937746503773189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: seedling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,6 +744,101 @@ MonoBehaviour:
   rotationWaveSpeed: 0.2
   rotationBounciness: 0.5
   underWater: 0
+--- !u!1 &5493011976887106666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2297944430326440661}
+  - component: {fileID: 6905218553500910860}
+  - component: {fileID: 7005939450439625079}
+  - component: {fileID: 6407909440059685403}
+  m_Layer: 9
+  m_Name: reminder_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2297944430326440661
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493011976887106666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5923503432335328949}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -80, y: -146}
+  m_SizeDelta: {x: 583.24, y: 237.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6905218553500910860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493011976887106666}
+  m_CullTransparentMesh: 0
+--- !u!114 &7005939450439625079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493011976887106666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 92672d0e0b576864e8d38d861292b140, type: 3}
+    m_FontSize: 72
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: water to start
+--- !u!114 &6407909440059685403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493011976887106666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.21896166, g: 0.9433962, b: 0.19134924, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8438509334912693670
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +850,7 @@ GameObject:
   - component: {fileID: 6583343612384772247}
   - component: {fileID: 281037244945420541}
   - component: {fileID: 3763677127065258185}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: just planted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +956,7 @@ GameObject:
   - component: {fileID: 6726102980284034403}
   - component: {fileID: 7946161981903103302}
   - component: {fileID: 2024222876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: apple_all_phases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,6 +981,7 @@ Transform:
   - {fileID: 6531232808342673063}
   - {fileID: 1726319750579370832}
   - {fileID: 1207033457}
+  - {fileID: 5923503432335328949}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -787,6 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d061a8d6612d57419759a572322f9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reminderText: {fileID: 7005939450439625079}
   currentGrowthLevel: 0
   harvestedPlant: apple
   justPlanted: {fileID: 8438509334912693670}
@@ -795,12 +1006,10 @@ MonoBehaviour:
   deadPlant: {fileID: 1797903788194854369}
   growthCounter: 0
   thirstDeathLevel: -5
-  wateredAmount: 0
-  timeToBecomeSeedling: 4
-  timeToBecomeReadyToHarvest: 8
+  wateredAmount: 1
+  timeToBecomeSeedling: 6
+  timeToBecomeReadyToHarvest: 12
   myRow: {fileID: 0}
-  timeLimit1: 100
-  timeLimit2: 200
   collectibleCollider: {fileID: 1207033456}
   inventoryItemPrefab: {fileID: 552037172233083853, guid: bc422ac651e2fcf42ac1ee5093fa3b26,
     type: 3}

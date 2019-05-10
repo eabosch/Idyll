@@ -35,11 +35,14 @@ public class CollectableInventoryItem : MonoBehaviour
         else if (itemType == InventoryItemType.Harvestable)
         {
             slot = Equipments.instance.GetFreeHarvastableSlot();
+        } else if (itemType == InventoryItemType.BirdSong)
+        {
+            slot = Equipments.instance.GetFreeBirdsongSlot();
         }
 
         if (slot != null)
         {
-            slot.SetCurrentItem(this.gameObject);
+            slot.SetCurrentItem(this.gameObject.GetComponent<GenericInventoryItem>());
             //---------------
             usableItem.enabled = true;
 

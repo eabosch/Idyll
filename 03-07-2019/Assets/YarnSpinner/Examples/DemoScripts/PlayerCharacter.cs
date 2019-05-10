@@ -150,11 +150,20 @@ namespace Yarn.Unity.Example {
             //}
 
             Flip(horizontal);
+
+
+            //---- Clear our conversation partner, when their state goes to idle --------------------
+            if (currentConversationPartner != null && currentConversationPartner.state == NPC.State.Idle)
+            {
+                currentConversationPartner = null;
+            }
         }
 
         void LateUpdate()
         {
             playerCamera.transform.position = this.transform.position + offset;
+
+  
         }
 
         /// Find all DialogueParticipants
@@ -245,11 +254,33 @@ namespace Yarn.Unity.Example {
 
         //public SingleInventorySlot receivedItem;
 
-        //[YarnCommand("receiveItem")]
+        [YarnCommand("receiveItem")]
         public void ReceiveItem(string itemName)
         {
             Debug.Log("You've received " + itemName + "from " + currentConversationPartner.name);
             Equipments.instance.AddItemToPlayerInventory(itemName);
+        }
+
+        [YarnCommand("endGivingSession")]
+        public void EndGivingSession(string acceptOrReject)
+        {
+            string givenItemName = EZYarnVariables.ItemForNpc;
+            Debug.LogError("Giving session ended, npc takes : " + acceptOrReject + ", item: " + givenItemName);
+            if (acceptOrReject == "accept")
+            {
+                
+                Equipments.instance.RemoveItemFromPlayerInventory(givenItemName);
+            }
+            else if (acceptOrReject == "reject")
+            {
+
+            }
+            else
+            {
+                Debug.LogError("unknow endgivingsession return value: " + acceptOrReject);
+            }
+
+           
         }
     }
 }

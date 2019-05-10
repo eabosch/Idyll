@@ -1,14 +1,12 @@
 title: Annie
 tags: 
 colorID: 4
-position: 150,182
+position: -34,165
 ---
 <<if visited("Annie") is false>>
 Strange Woman: ...hello.
 
 Strange Woman:  A new face... that's rare.
-
-<<receiveItem Player parsnip_seed>>
 
 [[It's nice to meet you, ma'am|Annie.Hello]]
 
@@ -81,27 +79,29 @@ Annie: Speaking of new neighbors, I should get you a housewarming gift!
 Annie: Don't be silly! I don't have much, sadly...
 Annie: But would this do?
 
+<<receiveItem Player parsnip_seed>>
+
 [[What is it? | Annie.Parsnip]]
 
 ===
 title: Annie.Give
 tags: 
-colorID: 0
-position: 400,379
+colorID: 6
+position: 833,63
 ---
 Annie: Oh word?
 
 Annie: Got anything good?
 <<set $npc_can_receive to true>>
 
-->Nope sorry
 
-Annie: :(
+[[Nope sorry|Annie.DoNotGivePresent]]
+
 ===
 title: Annie.FirstGift
 tags: 
 colorID: 1
-position: 462,641
+position: 1385,227
 ---
 Annie: Hey thanks I love parsnips
 
@@ -116,4 +116,44 @@ Annie: It's a parsnip!
 Annie: My favorite!
 Annie: ... are you sure you're cut out for this farming stuff?
 
+===
+title: Annie.DoNotGivePresent
+tags: 
+colorID: 0
+position: 622,307
+---
+<<set $npc_can_receive to false>>
+Annie: :(
+===
+title: Annie.Receives
+tags: 
+colorID: 0
+position: 883,306
+---
+<<set $npc_can_receive to false>>
+
+<<if $item_for_npc is "parsnip">>
+<<endGivingSession Player accept>>
+annie: I like parnsnips, but this kind is so-so.
+
+<<elseif $item_for_npc is "devil parsnip">>
+[[Annie.DevilParsnip]]
+
+<<else>>
+annie: what the heck is that?
+<<endGivingSession Player reject>>
+
+<<endif>> 
+<<set $npc_can_receive to false>>
+===
+title: Annie.DevilParsnip
+tags: 
+colorID: 0
+position: 774,607
+---
+annie: devil parsnips are the best parsnips.
+annie: The best I tell you.
+annie: I could go on and on.
+annie: and I will!
+<<endGivingSession Player accept>>
 ===
