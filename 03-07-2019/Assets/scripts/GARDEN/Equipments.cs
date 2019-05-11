@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum InventoryItemType { Seed, Harvestable, BirdSong };
+public enum InventoryItemType { Seed, Harvestable, BirdSong};
+
+
 
 public class Equipments : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class Equipments : MonoBehaviour
     public SingleInventorySlot[] _birdsongInventoryList;
     List<SingleInventorySlot> _allInventorySlotsAllTypes = new List<SingleInventorySlot>();
 
-    //**public NPCRelationshipStatus relationshipGlobalVariable = new NPCRelationshipStatus();
+    //public NPCRelationshipStatus relationshipGlobalVariable = new NPCRelationshipStatus();
 
     [SerializeField]
     GameObject[] _seedPrefabs;
@@ -26,6 +28,7 @@ public class Equipments : MonoBehaviour
     private Seeds selectedSeed;
     public GameObject currentEquippedTool = null;
 
+    
     //public void set_selected_seed(Seeds seed)
     //{
     //    selectedSeed = seed;
@@ -171,9 +174,41 @@ public class Equipments : MonoBehaviour
 
 [System.Serializable] //putting this line before a class defintion
 //will make it visible in the the inspector
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// for interactions with npc, whether the player visited the NPC on that day**
+public enum InteractionWithNPC { Visited, NotVisited };
+
 public class NPCRelationshipStatus
 {
 
-    public int gerardRelationshipQuality = 0;
-    public int nancyRelationshipQuality = 0;
+    //public int ripRelationshipQuality = 0;
+    //public int annieRelationshipQuality = 0;
+
+    public string name = "";
+    public int relationshipQuality = 0;
+    //**
+    public InteractionWithNPC visitStatus = InteractionWithNPC.NotVisited;
+    public InteractionWithNPC _visitStatus
+    {
+        get
+        {
+            return _visitStatus;
+        }
+
+        set
+        {
+            Debug.Log("visitStatus changed from " + _visitStatus + " to " + value);
+            _visitStatus = value;
+        }
+    }
+
+    public void setPlayerInterationWithNPC(InteractionWithNPC interactionStatus)
+    {
+       this.visitStatus = interactionStatus;
+        // if had conversation with NPC, set interaction Status to Visited
+        
+    }
 }

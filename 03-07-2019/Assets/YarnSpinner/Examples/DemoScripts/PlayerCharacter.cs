@@ -64,6 +64,10 @@ namespace Yarn.Unity.Example {
 
         public NPC currentConversationPartner = null;
 
+        //**
+        public NPCRelationshipStatus npcVisitStatus = new NPCRelationshipStatus();
+
+
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected() {
             Gizmos.color = Color.blue;
@@ -202,6 +206,15 @@ namespace Yarn.Unity.Example {
         public void TalkToNPC(NPC target, string overrideTalkNode = null)
         {
             currentConversationPartner = target;
+
+            // visitedNPC == true
+            npcVisitStatus.name = target.name;
+            npcVisitStatus.relationshipQuality = 1;
+            npcVisitStatus.visitStatus = InteractionWithNPC.Visited;
+            Debug.Log("Visited " + npcVisitStatus.name + ", relationshipQuality: " 
+                + npcVisitStatus.relationshipQuality + ", visitStatus: " + npcVisitStatus.visitStatus);
+
+
             //NPCOptions.SetActive(false);
             if (overrideTalkNode == null)
             {
@@ -273,7 +286,7 @@ namespace Yarn.Unity.Example {
             }
             else if (acceptOrReject == "reject")
             {
-
+                // if NPC rejects the gift from player
             }
             else
             {

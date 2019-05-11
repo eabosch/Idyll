@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*OLD SCRIPT, NOT USING ANYMORE*/
+
 public class dayNightCycle : MonoBehaviour
 {
 	public float total_time;

@@ -28,6 +28,7 @@ public enum PlantGrowthLevel
     Dead
 }
 
+
 /*
 public enum PlantWateringPeriod
 {
@@ -44,8 +45,6 @@ public class Plant : MonoBehaviour
 
     public string harvestedPlant;
 
-    //[SerializeField] public GameObject Seedling;
-    //[SerializeField] public GameObject ReadyToHarvest;
     public GameObject justPlanted;
     public GameObject seedling;
     public GameObject readyToHarvest;
@@ -92,6 +91,7 @@ public class Plant : MonoBehaviour
     [Header("--Item Related--")]
     public GameObject collectibleCollider;
     public GameObject inventoryItemPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
