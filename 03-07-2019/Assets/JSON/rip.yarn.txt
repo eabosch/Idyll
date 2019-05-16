@@ -1,5 +1,5 @@
 title: Rip.Start
-tags: 
+tags: Rip.Start
 colorID: 0
 position: 571,252
 ---
@@ -9,13 +9,13 @@ Vagrant: Ah... hallo...
 
 Vagrant: Wie ben je?
 
-[[ Um... come again? | Rip.englishIsFine]]
-[[ Een nieuwe buurman. | Rip.justWokeUp]]
+[[ Um... come again? |Rip.EnglishIsFine]]
+[[ Een nieuwe buurman. |Rip.JustWokeUp]]
 ===
-title: Rip.englishIsFine
-tags: Rip.englishIsFine
+title: Rip.EnglishIsFine
+tags: Rip.EnglishIsFine
 colorID: 0
-position: 381,669
+position: 402,561
 ---
 Vagrant: Oh... I'm sorry. Just woke up. I'm still getting my bearings.
 
@@ -25,13 +25,13 @@ Vagrant: Is it even still morning?
 
 Vagrant: I'm sorry...
 
-[[ It's alright. Take your time. | Rip.wakingUp]]
-[[ How long were you out for? | Rip.longNap]]
+[[ It's alright. Take your time. |Rip.WakingUp]]
+[[ How long were you out for? |Rip.LongNap]]
 ===
-title: Rip.justWokeUp
-tags: Rip.justWokeUp
+title: Rip.JustWokeUp
+tags: Rip.JustWokeUp
 colorID: 0
-position: 666,658
+position: 654,560
 ---
 Vagrant: !!
 
@@ -40,5 +40,54 @@ Vagrant: Je kunt Nederlands spreken??
 
 Vagrant: Ah... that's alright. Engels is ook prima.
 
-Vagran: I do appreciate the effort, though.
+Vagrant: I do appreciate the effort, though.
+
+Vargrant: *yawn*
+
+Vargrant: Apologies. Bit tired.
+
+Vagrant: I don't think I introduced myself did I?
+
+[[No. But take you time. |Rip.WakingUp]]
+[[Are you Rip? Annie sent me.|Rip.SentByAnnie]]
+===
+title: Rip.WakingUp
+tags: Rip.WakingUp
+colorID: 0
+position: 520,919
+---
+Vagrant: Name's Rip.
+
+Rip: Nice to meet you.
+
+Rip: ... who... are you exactly?
+
+[[A new neighbor.|Rip.NewNeighbor]]
+[[The new tenant at the old farm.|Rip.Farmer]]
+===
+title: Rip.LongNap
+tags: Rip.LongNap
+colorID: 0
+position: 262,923
+---
+Vagrant: Oh, it was a long nap...
+Vagrant: They're always longer than I intend for them to be.
+Vagrant: Anyways...
+Vagrant: *yawn* 
+Vagrant: Who are you?
+
+[[New neighbor. Nice to meet you.|Rip.NewNeighbor]]
+[[
+===
+title: Rip.SentByAnnie
+tags: Rip.SentByAnnie
+colorID: 0
+position: 785,914
+---
+Rip: Yes, that's me.
+Rip: Annie sent you, you say?
+Rip: What for?
+
+[[Just to introduce myself. I'm your new neighbor.|Rip.NiceToMeetYou]]
+[[To ask about the farm. |Rip.Advice]]
 ===
