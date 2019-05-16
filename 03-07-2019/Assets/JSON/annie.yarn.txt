@@ -1,5 +1,5 @@
 title: Annie
-tags: 
+tags: Annie
 colorID: 4
 position: -34,165
 ---
@@ -28,17 +28,17 @@ Annie: I am glad for a new neighbor, honest. You just caught me a bit unawares.
 
 
 <<if not visited("Annie.dreary")>>
-[[Apologize for the trouble ma'am|Annie.dreary]]
+[[Apologize for the trouble ma'am|Annie.Dreary]]
 <<endif>>
 
 <<if not visited("Annie.poorImpression")>>
-[[It's no trouble, ma'am. I Understand.|Annie.poorImpression]]
+[[It's no trouble, ma'am. I Understand.|Annie.PoorImpression]]
 <<endif>>
 ===
 title: Annie.dreary
 tags: Annie.dreary
 colorID: 1
-position: -207,708
+position: -207,713
 ---
 Annie: You're awfully kind. It was no trouble at all.
 
@@ -46,11 +46,11 @@ Annie: Are you the new tenant at that old farm?
 
 Annie: Sort of a dreary place, no?
                 
-[[Not at all. I enjoy the peace and quiet.|Annie.suitsYou]]
-[[A little. But it's good to have neighbors.|Annie.nicePeople]]
+[[Not at all. I enjoy the peace and quiet.|Annie.SuitsYou]]
+[[A little. But it's good to have neighbors.|Annie.NicePeople]]
 ===
-title: Annie.poorImpression
-tags: Annie.poorImpression
+title: Annie.PoorImpression
+tags: Annie.PoorImpression
 colorID: 1
 position: 84,707
 ---
@@ -60,8 +60,8 @@ Annie: If you haven't yet, you should take a short preamble around these  woods.
 
 Annie: My favorite method of clearing my mind. And the birdsong is so pleasant.
 ===
-title: Annie.suitsYou
-tags: Annie.suitsYou
+title: Annie.SuitsYou
+tags: Annie.SuitsYou
 colorID: 1
 position: -255,1029
 ---
@@ -81,17 +81,17 @@ Annie: But would this do?
 
 <<receiveItem Player parsnip_seed>>
 
-[[What is it? | Annie.Parsnip]]
+[[What is it? |Annie.Parsnip]]
 
 ===
 title: Annie.Give
 tags: 
-colorID: 6
+colorID: 3
 position: 833,63
 ---
-Annie: Oh word?
+Annie: Oh? Something for me?
 
-Annie: Got anything good?
+Annie: What have you got?
 <<set $npc_can_receive to true>>
 
 
@@ -103,9 +103,10 @@ tags:
 colorID: 1
 position: 1385,227
 ---
-Annie: Hey thanks I love parsnips
+Annie: Parsnips are my favorite!
+Annie: You remembered! Thank you!
 
--> Cool.
+-> You're welcome.
 ===
 title: Annie.Parsnip
 tags: Annie.Parsnip
@@ -113,21 +114,28 @@ colorID: 1
 position: 42,1308
 ---
 Annie: It's a parsnip!
-Annie: My favorite!
 Annie: ... are you sure you're cut out for this farming stuff?
+ -> Uh...
+Annie: Just a joke!
+Annie: Since you're here, you should try visiting Rip out in the woods.
+Annie: He likes to take naps out there. 
+Annie: I know, it seems dangerous.
+Annie: His advice is invaluable, though. Since you're new here, it may be nice to have a chat.
+ -> Thank you, I will.
+Annie: Good luck with the farm!
 
 ===
 title: Annie.DoNotGivePresent
 tags: 
-colorID: 0
+colorID: 3
 position: 622,307
 ---
 <<set $npc_can_receive to false>>
-Annie: :(
+Annie: Oh, well that's alright.
 ===
 title: Annie.Receives
 tags: 
-colorID: 0
+colorID: 3
 position: 883,306
 ---
 <<set $npc_can_receive to false>>
@@ -148,7 +156,7 @@ annie: what the heck is that?
 ===
 title: Annie.DevilParsnip
 tags: 
-colorID: 0
+colorID: 3
 position: 774,607
 ---
 annie: devil parsnips are the best parsnips.
@@ -156,4 +164,217 @@ annie: The best I tell you.
 annie: I could go on and on.
 annie: and I will!
 <<endGivingSession Player accept>>
+===
+title: Annie.Family
+tags: Annie.Family
+colorID: 6
+position: -985,449
+---
+<<if visited("Annie.ThanksForComing") is true>>
+Annie: Hello, neighbor!
+Annie: How has the farm been treating you?
+
+[[Well enough, I suppose |Annie.GoodBones]]
+[[It's a labor of love |Annie.HardWork]]
+===
+title: Annie.GoodBones
+tags: Annie.GoodBones
+colorID: 6
+position: -1120,718
+---
+Annie: It's good that you can manage keeping your spirits up, at least.
+ -> It's not so bad.
+Annie: That farm is a mighty big project, but you don't complain. That's admirable.
+Annie: If you ever have trouble, though, know that you can count on your neighbors.
+
+[[Thank you. |Annie.BestNeighbors]]
+[[You really needn't trouble yourself for my sake. |Annie.NoTrouble]]
+===
+title: Annie.HardWork
+tags: Annie.HardWork
+colorID: 6
+position: -892,719
+---
+Annie: Yes, I can see that.
+Annie: You put more work into that place than I think I ever could myself.
+Annie: It's admirable, truly.
+[[It's not much, really. I just like the quiet |Annie.ISeeHowItIs]]
+[[Thank you kindly, ma'am. |Annie.BestNeighbors]]
+===
+title: Annie.BestNeighbors
+tags: Annie.BestNeighbors
+colorID: 6
+position: -781,988
+---
+Annie: You have exceedingly good manners.
+ -> ?
+Annie: I know a simple thank you may not seem like much.
+Annie: But it's rarer than you think.
+Annie: And given the fact that I don't see many people aside from Rip, who can be very rude, it is noted and appreciated.
+
+===
+title: Annie.NoTrouble
+tags: Annie.NoTrouble
+colorID: 6
+position: -1123,976
+---
+Annie: It's no trouble at all, really.
+Annie: What are neighbors for, after all?
+Annie: You don't have any family to help you, so let Rip and I be your family.
+
+[[Thank you, but I do have family, actually.|Annie.OhThatsAwkward]]
+[[Thank you. I hope I'm a halfway decent brother.|Annie.Brother]]
+===
+title: Annie.Brother
+tags: Annie.Brother
+colorID: 6
+position: -1258,1243
+---
+Annie: Who said you were a brother?
+Annie: If anything you are the petulant child.
+Annie: And we are your lovingly devoted and exhausted parents.
+ ->I would not have guessed that.
+Annie: And that's why you're the petulant child.
+Annie: While we're on the subject, though, how is your family. 
+Annie: Your real family.
+Annie: Do they know about your little farm? How long before we get to meet them?
+
+[[I don't have a family, actually. |Annie.AllAlone]]
+[[They're fine. They don't love the farm, though. |Annie.OhThatsAwkward]]
+===
+title: Annie.ThanksForComing
+tags: Annie.ThanksForComing
+colorID: 2
+position: -223,1551
+---
+<<if visited("Annie.Parsnip")>>
+Annie: It's nice to finally have people here.
+Annie: This place feels just a little more lively.
+Annie: Even Rip is seeming more animated.
+-> I don't know if I can take credit for that.
+Annie: Well you've been excellent company so far.
+Annie: Rip is usually sleeping, so used to be I had no one at all to talk to some days.
+Annie: I apologize for talking your ear off, I just haven't spoken at length in a long time.
+<<endif>>
+[[It's no problem at all|Annie.Chatty]]
+[[I'm sorry I talk so little. |Annie.TheQuietType]]
+===
+title: Annie.TheQuietType
+tags: Annie.TheQuietType
+colorID: 2
+position: -343,1851
+---
+Annie: Oh, you needn't worry.
+Annie: Compared to Rip, your miles better as a conversationalist.
+Annie: At very least you manage to stay awake.
+ -> I'm happy to do my part.
+===
+title: Annie.Chatty
+tags: Annie.Chatty
+colorID: 2
+position: -82,1844
+---
+Annie: Oh dear, Then I am talking to much...
+Annie: I'm sure it gets tiring listening to me go on like this.
+Annie: You're just too polite to tell me.
+ -> Not real-
+Annie: I'll try and let you speak more, I promise.
+===
+title: Annie.AllAlone
+tags: Annie.AllAlone
+colorID: 6
+position: -1212,1558
+---
+Annie: No family, you say?
+Annie: Me neither.
+Annie: That's okay, we can all look after each other.
+===
+title: Annie.OhThatsAwkward
+tags: Annie.OhThatsAwkward
+colorID: 6
+position: -970,1339
+---
+Annie: Oh, so you do have a family.
+Annie: They haven't followed you here, though?
+ -> I don't exactly have the room.
+Annie: Yes, I suppose. 
+Annie: I have family too.
+Annie: I sorely miss them.
+ ->It must be lonely...
+Annie: Yes, a little. But I have Rip. And you, our beautiful petulant child.
+[[I'm not really "petulant" |Annie.PetulantDefined]]
+[[We make a wonderful family. |Annie.SpoiledRotten]]
+===
+title: Annie.PetulantDefined
+tags: Annie.PetulantDefined
+colorID: 6
+position: -928,1612
+---
+Annie: Haha
+Annie: No, I suppose not.
+Annie: We'll find a better word for you, son.
+===
+title: Annie.SpoiledRotten
+tags: Annie.SpoiledRotten
+colorID: 6
+position: -693,1608
+---
+Annie: Don't get too comfortable, now.
+Annie: I don't want anyone saying we spoiled you rotten.
+
+<<receiveItem Player parsnip_seed>>
+===
+title: Annie.ILoveParsnips
+tags: 
+colorID: 4
+position: 417,1549
+---
+Annie: I apologize if this is a controversial opinion but parsnips are simply the best vegetable.
+Annie: They're hardy enough to survive harsh soil and seasons, and they make an excellent soup.
+ -> Any reason for the sudden conviction?
+Annie: I just found myself craving the stuff.
+Annie: I realized I hadn't had parsnip soup since I last saw my mother.
+Annie: And that was a very long time ago.
+[[Would you like a parsnip, then?|Annie.RecipeOne]]
+[[How long ago?|Annie.NoneOfYourBusiness]]
+===
+title: Annie.RecipeOne
+tags: Annie.RecipeOne
+colorID: 4
+position: 319,1798
+---
+Annie: Oh, how thoughtful!
+Annie: If you wanted to make some yourself I could give you the recipe.
+[[That would be wonderful|Annie.ParsnipSoup]]
+[[Don't trouble yourself. I'm a horrible cook. |Annie.SuitYourself]]
+===
+title: Annie.NoneOfYourBusiness
+tags: Annie.NoneOfYourBusiness
+colorID: 4
+position: 564,1803
+---
+Annie: A lady never reveals her age.
+===
+title: Annie.ParsnipSoup
+tags: Annie.ParsnipSoup
+colorID: 4
+position: 201,2058
+---
+Annie: It's really very simple.
+Annie: Just mince and fry onions and parsnips until they're soft,
+Annie: Add garlic and apples,
+Annie: And once these have softened as well, simmer it all in stock.
+Annie: After that you just break it down into a pasty texture with a fork and voilà!
+Annie: Parsnip soup!
+ -> Sounds delicious.
+Annie: It's sort of plain, but it warms the soul like nothing else!
+===
+title: Annie.SuitYourself
+tags: Annie.SuitYourself
+colorID: 4
+position: 436,2063
+---
+Annie: Suit yourself.
+Annie: Maybe I'll make some for you one of these days.
+ ->That would be wonderful.
 ===
