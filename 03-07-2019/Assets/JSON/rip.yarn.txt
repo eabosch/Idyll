@@ -74,10 +74,12 @@ Vagrant: Oh, it was a long nap...
 Vagrant: They're always longer than I intend for them to be.
 Vagrant: Anyways...
 Vagrant: *yawn* 
-Vagrant: Who are you?
+Vagrant: I'm Rip.
+Rip: But who are you?
 
 [[New neighbor. Nice to meet you.|Rip.NewNeighbor]]
-[[
+<<if visited "Annie">>
+[[Annie sent me. I was hoping for some advice.|Rip.Advice]]
 ===
 title: Rip.SentByAnnie
 tags: Rip.SentByAnnie
@@ -90,4 +92,108 @@ Rip: What for?
 
 [[Just to introduce myself. I'm your new neighbor.|Rip.NiceToMeetYou]]
 [[To ask about the farm. |Rip.Advice]]
+===
+title: Rip.Advice
+tags: Rip.Advice
+colorID: 0
+position: 555,1347
+---
+Rip: What kind of advice were you looking for?
+
+[[How to grow crops, I guess.|Rip.FarmingTutorial]]
+[[More about these woods.|Rip.ThisNeckOfTheWoods]]
+===
+title: Rip.NewNeighbor
+tags: Rip.NewNeighbor
+colorID: 0
+position: 839,1353
+---
+Rip: A new neighbor, huh...
+Rip: *yawn* Well that doesn't happen very often.
+Rip: People are usually eager to get away from this lazy hollow.
+Rip: Too quiet for most.
+Rip: But perfect for a nap.
+Rip: In fact... I'm feeling a little drowsy.......
+Rip: *yaaaaaaaaawn* Well.... It's been nice knowing you..........
+<<>>
+Rip: *SNORK*
+Rip: *mimimimimi*
+ -> Uh... Nice to meet you?
+Rip: !!
+Rip: huh?
+Rip: Did I fall asleep?
+[[Yeah for a bit.|Rip.SorryAboutThat]]
+[[Yeah. Does that happen often?|Rip.OnDrowsiness]]
+
+===
+title: Rip.Farmer
+tags: Rip.Farmer
+colorID: 0
+position: 294,1341
+---
+Rip: A farmer, eh?
+Rip: What are you planning on farming?
+ -> Well I have parsnips so far...
+Rip: Annie's handiwork, no doubt.
+Rip: Anything else planned?
+Rip: Fruit maybe?
+Rip: I could go for something sweet.
+[[No, nothing yet.|Rip.NoSweetsForRip]]
+[[Not yet. But if you want something let me know.|Rip.BorrowSomeSugar]]
+===
+title: Rip.BorrowSomeSugar
+tags: Rip.BorrowSomeSugar
+colorID: 0
+position: 115,1664
+---
+Rip: Oh, you're too kind.
+Rip: Having neighbors has some perks, eh?
+Rip: You know... if you ever need to borrow some sugar or something...
+Rip: ......
+Rip: ... I don't have any. You'd be out of luck.
+Rip: ............. sorry.......
+===
+title: Rip.NoSweetsForRip
+tags: Rip.NoSweetsForRip
+colorID: 0
+position: -145,1573
+---
+Rip: Oh... that's too bad.
+Rip: I've been in the mood for an olykoek...
+Rip: ... with a little fruit on top...
+Rip: ... the perfect snack.
+Rip: ..... *sigh* ....
+===
+title: Rip.FarmingTutorial
+tags: Rip.FarmingTutorial
+colorID: 0
+position: 442,1671
+---
+Rip: .... how to farm?
+Rip: ....... You just bought a farm....
+Rip: .... and you're asking a stranger how to farm?
+Rip: Are you going to be alright?
+ -> I could really use some help.
+Rip: I should say so.
+Rip: Well... Do you have seeds?
+[[Yes|Rip.HasSeeds]]
+[[No...|Rip.DoesntHaveSeeds]]
+===
+title: Rip.DoesntHaveSeeds
+tags: Rip.DoesntHaveSeeds
+colorID: 0
+position: 432,1961
+---
+Rip: Well in that case...
+<<receiveItem Player parsnip_seed>>
+Rip: That's a parsnip seed.
+Rip: Annie's favorite.
+Rip: You have a part of your bad just for seeds.
+Rip: Open that up and then choose the parsnip seed.
+Rip: And then choose a plot of land.
+Rip: And then water it once a day until it's ready to harvest.
+Rip: It's really very simple.
+ -> And then what?
+Rip: Well you have a parsnip!
+Rip: You can do with it what what you will!
 ===
