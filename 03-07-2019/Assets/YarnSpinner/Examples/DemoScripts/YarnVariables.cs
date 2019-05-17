@@ -31,6 +31,36 @@ using Yarn.Unity;
 
 /// An extremely simple implementation of DialogueUnityVariableStorage, which
 /// just stores everything in a Dictionary.
+/// 
+//public interface IColorable
+//{
+//    Color GetColor();
+//    void SetColor(Color c);
+//}
+//public class Dog : IColorable
+//{
+//    Color myColor = Color.yellow;
+//    public void Bark()
+//    {
+//        Debug.Log("Bark");
+//    }
+
+//    public Color GetColor()
+//    {
+//        return myColor;
+//    }
+//    public void SetColor(Color c) { myColor = c; }
+
+//    void ForExample()
+//    {
+//        IColorable oneColorableThing = YarnVariables.instance;
+//        IColorable anotherOne = new Dog();
+
+//        anotherOne.SetColor(oneColorableThing.GetColor());
+
+//    }
+//}
+
 public class YarnVariables : VariableStorageBehaviour
 {
 

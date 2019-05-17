@@ -19,9 +19,21 @@ public class IdyllTime : MonoBehaviour
     public static float sunriseStartTime = 3;
     public static float sunriseEndTime = 7;
 
-    public static float GetGameTimeHrs()
+    
+
+    public static float GetTotalGameHoursPassed()
     {
         return timeInSeconds / secondsPerGameHour;
+    }
+    public static float GetGameClockTimeHrs()
+    {
+       
+        return GetTotalGameHoursPassed() % 24;
+    }
+
+    public static int GetGameDay()
+    {
+        return (int)(GetTotalGameHoursPassed() / 24);
     }
     // Start is called before the first frame update
     void Awake()
@@ -33,14 +45,14 @@ public class IdyllTime : MonoBehaviour
     void Update()
     {
         timeInSeconds += Time.deltaTime * timeSpeed;
-        if (GetGameTimeHrs() >= 24)
+        if (GetGameClockTimeHrs() >= 24)
         {
-            timeInSeconds = 0;
+            //timeInSeconds = 0;
         }
 
-        dbgTimeHrs = GetGameTimeHrs();
+        dbgTimeHrs = GetGameClockTimeHrs();
 
-        float gameTime = GetGameTimeHrs();
+        float gameTime = GetGameClockTimeHrs();
 
 
         // ----------DAYTIME TO NIGHTIME TRANSITION -------------

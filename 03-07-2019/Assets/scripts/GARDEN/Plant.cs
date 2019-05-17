@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Yarn.Unity.Example;
 /*
- 
-    To make the plant collectable:
-    - Add a rigidbody2d, set bodytyper to Kinematic (so it doesn't fall)
-    
-    - Add a child, named 'collectable collider', with a boxCollider2d, turn child object off
-    
-    - on the plant script, drag and drop 'collectable collider' on to the 'collectible collider' slot
 
-    - Find 'parsnip_item' in the project tab, duplicate it, change it's src image
+To make the plant collectable:
+- Add a rigidbody2d, set bodytyper to Kinematic (so it doesn't fall)
 
-    - on the plant script, drag and drop the new prefab_item onto the 'Inventory Item Prefab' slot
+- Add a child, named 'collectable collider', with a boxCollider2d, turn child object off
 
-    - Apply changes to the plant prefab
+- on the plant script, drag and drop 'collectable collider' on to the 'collectible collider' slot
 
-     */
+- Find 'parsnip_item' in the project tab, duplicate it, change it's src image
+
+- on the plant script, drag and drop the new prefab_item onto the 'Inventory Item Prefab' slot
+
+- Apply changes to the plant prefab
+
+*/
 
 
 public enum PlantGrowthLevel
@@ -53,6 +54,8 @@ public class Plant : MonoBehaviour
     public float growthCounter = 0;
     public float thirstDeathLevel = -5;
 
+    public string guardianNPCName = "";
+
     public bool IsThirsty()
     {
         return wateredAmount < 0 && currentGrowthLevel != PlantGrowthLevel.Dead;
@@ -67,8 +70,8 @@ public class Plant : MonoBehaviour
 
 
     // time to grow to the next phase
-    public float timeToBecomeSeedling = 4;
-    public float timeToBecomeReadyToHarvest = 8;
+    public float daysToBecomeSeedling = 1;
+    public float daysToBecomeReadyToHarvest = 2;
 
 
     // time to water plant
@@ -84,7 +87,6 @@ public class Plant : MonoBehaviour
     public int timeLimit1 = 0;
     public int timeLimit2 = 0;
     */
-    private int time = 0;
 
 
 
@@ -92,34 +94,53 @@ public class Plant : MonoBehaviour
     public GameObject collectibleCollider;
     public GameObject inventoryItemPrefab;
 
+    [Header("--DEBUG--")]
+    public float currentGrowthRateDBG = 0;
+    public float lastSeenSocialHealthDBG = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         SetPlantGrowthLevel(currentGrowthLevel);
     }
 
-    // Update is called once per frame
-    void Update()
+    public int daysAlive = 0;
+    [ContextMenu("OnDayFinish()")]
+    public void OnDayFinish()
     {
+        daysAlive++;
         float currentGrowthRate = 1;
-        bool didntWaterLastCycle = false;
-        if (didntWaterLastCycle)
+
+
+
+        NPC guardianNpc = NPC.GetNPCByName(guardianNPCName);
+
+
+        //05/16 wenrui
+
+        if (guardianNpc != null)
         {
-            currentGrowthRate = currentGrowthRate / 2;
+            lastSeenSocialHealthDBG = guardianNpc.PlantSocialHealth();
+            if (guardianNpc.PlantSocialHealth() != 0)
+            {
+                //currentGrowthRate += friendlinessToCharacterScore;
+            }
+            else
+            {
+                //currentGrowthRate = 0;
+            }
         }
 
-        float friendlinessToCharacterScore = 1; //.5f if you were mean, 1.5f if you were nice
-        currentGrowthRate += friendlinessToCharacterScore;
 
         if (IsThirsty())
         {
-            currentGrowthRate = 0; //Stop growing, if un-watered
+            //currentGrowthRate = 0; //Stop growing, if un-watered
         }
 
-        growthCounter += Time.deltaTime * currentGrowthRate;
-        wateredAmount -= Time.deltaTime;
+        growthCounter += currentGrowthRate;
+        //wateredAmount -= Time.deltaTime;
 
-        if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= timeToBecomeReadyToHarvest)
+        if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= daysToBecomeReadyToHarvest)
         {
             currentGrowthLevel = PlantGrowthLevel.ReadyToHarvest;
             SetPlantGrowthLevel(currentGrowthLevel);
@@ -129,7 +150,7 @@ public class Plant : MonoBehaviour
             }
         }
 
-        if (currentGrowthLevel == PlantGrowthLevel.JustPlanted && growthCounter >= timeToBecomeSeedling)
+        if (currentGrowthLevel == PlantGrowthLevel.JustPlanted && growthCounter >= daysToBecomeSeedling)
         {
             currentGrowthLevel = PlantGrowthLevel.Seedling;
             SetPlantGrowthLevel(currentGrowthLevel);
@@ -142,7 +163,14 @@ public class Plant : MonoBehaviour
 
         CheckForDeathUpdate();
 
-        time++;
+        //SET DEBUG VALUES TO OBSERVE IN INSPECTOR
+        currentGrowthRateDBG = currentGrowthRate;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     void CheckForDeathUpdate()
@@ -154,7 +182,6 @@ public class Plant : MonoBehaviour
 
         }
         */
-
 
 
         if (currentGrowthLevel != PlantGrowthLevel.Dead)
@@ -222,15 +249,6 @@ public class Plant : MonoBehaviour
         }
         
 
-    }
-
-
-    private void DeletePlant(int t, GameObject plant)
-    {
-        if (t == time)
-        {
-            Destroy(plant);
-        }
     }
 
 }

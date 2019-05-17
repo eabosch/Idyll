@@ -21,7 +21,7 @@ public class IdyllSunMoon : MonoBehaviour
         //90        = sun at highest point in sky (noon)
         //180       = sun (sunset)
         //270       = moon has risen
-        if (IdyllTime.GetGameTimeHrs() >= 0 && IdyllTime.GetGameTimeHrs() < IdyllTime.sunsetStartTime)
+        if (IdyllTime.GetGameClockTimeHrs() >= 0 && IdyllTime.GetGameClockTimeHrs() < IdyllTime.sunsetStartTime)
         {
             this.transform.eulerAngles = new Vector3(0, 0, Mathf.Lerp(90, 270, IdyllTime.dayNightBlend));
         }

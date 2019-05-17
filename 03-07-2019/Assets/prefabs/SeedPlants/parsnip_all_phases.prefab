@@ -472,13 +472,17 @@ MonoBehaviour:
   deadPlant: {fileID: 2249561126892125165}
   growthCounter: 0
   thirstDeathLevel: -5
+  guardianNPCName: Annie
   wateredAmount: 1
-  timeToBecomeSeedling: 6
-  timeToBecomeReadyToHarvest: 12
+  daysToBecomeSeedling: 2
+  daysToBecomeReadyToHarvest: 4
   myRow: {fileID: 0}
   collectibleCollider: {fileID: 1249542760}
   inventoryItemPrefab: {fileID: 552037172233083853, guid: 09fe30a9ecc3a014da303d8b6b5438a2,
     type: 3}
+  currentGrowthRateDBG: 0
+  lastSeenSocialHealthDBG: 0
+  daysAlive: 0
 --- !u!50 &2004964823
 Rigidbody2D:
   serializedVersion: 4

@@ -207,13 +207,18 @@ namespace Yarn.Unity.Example {
         {
             currentConversationPartner = target;
 
-            // visitedNPC == true
+            // if player has visited NPC on the day 
             npcVisitStatus.name = target.name;
             npcVisitStatus.relationshipQuality = 1;
             npcVisitStatus.visitStatus = InteractionWithNPC.Visited;
             Debug.Log("Visited " + npcVisitStatus.name + ", relationshipQuality: " 
                 + npcVisitStatus.relationshipQuality + ", visitStatus: " + npcVisitStatus.visitStatus);
 
+            // 
+            if ( target.name == "Annie")
+            {
+                
+            }
 
             //NPCOptions.SetActive(false);
             if (overrideTalkNode == null)

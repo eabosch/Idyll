@@ -179,7 +179,7 @@ public class Equipments : MonoBehaviour
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // for interactions with npc, whether the player visited the NPC on that day**
-public enum InteractionWithNPC { Visited, NotVisited };
+public enum InteractionWithNPC {Visited, NotVisited};
 
 public class NPCRelationshipStatus
 {
@@ -211,4 +211,20 @@ public class NPCRelationshipStatus
         // if had conversation with NPC, set interaction Status to Visited
         
     }
+}
+
+public class PlayerRelationshipWithNPC
+{
+    public static PlayerRelationshipWithNPC instance;
+    public int ripRelationshipQuality = 0;
+    public int annieRelationshipQuality = 0;
+
+    //public NPCRelationshipStatus visitAnnie;
+    //public NPCRelationshipStatus visitRip;
+
+    public bool visitedAnnie;
+    public bool visitedRip;
+
+
+
 }

@@ -16,7 +16,7 @@ public class IdyllUIClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float raw24HourTime = IdyllTime.GetGameTimeHrs(); //0 to 24
+        float raw24HourTime = IdyllTime.GetGameClockTimeHrs(); //0 to 24
                                                           //want something like 1:15 AM, 3:30 PM, 11:59 AM
          //(raw24HourTime) -> (desired display)
         //13.5 -> 1:30 PM
@@ -34,7 +34,7 @@ public class IdyllUIClock : MonoBehaviour
 
 
         float minutes = Mathf.Floor(hourFraction * 60);
-        IdyllClockText.text = hourDigits + " : " + minutes;
+        IdyllClockText.text = hourDigits + " : " + minutes + "\nDay: " + IdyllTime.GetGameDay();
         //Debug.Log(IdyllTime.GetGameTimeHrs();
     }
 }
