@@ -36,7 +36,7 @@ namespace Yarn.Unity.Example
     public class NPC : MonoBehaviour
     {
         public enum State
-        { Idle, TalkingToPlayer, ReceivingItem, Dead}
+        { Idle, TalkingToPlayer, ReceivingItem, Dead }
 
         public State _state = State.Idle;
 
@@ -64,7 +64,6 @@ namespace Yarn.Unity.Example
         const float PLAYER_PLANT_STOP_GROWING_TIME = 24;
 
         public float timeOfLastInteractionWithPlayer = 0;
-        float timeSinceLastInteraction = 0;
 
         [FormerlySerializedAs("startNode")]
         public string talkToNode = "";
@@ -79,9 +78,27 @@ namespace Yarn.Unity.Example
 
         public static Dictionary<string, NPC> _allNpcs = new Dictionary<string, NPC>();
 
+        public float timeSinceLastInteraction => IdyllTime.GetTotalGameHoursPassed() - timeOfLastInteractionWithPlayer;
+
         private void Awake()
         {
             _allNpcs[this.name] = this;
+            IdyllTime.OnDayFinish += () => { KillNPCIfNotEnoughtSocialInteraction(); };
+        }
+
+        void KillNPCIfNotEnoughtSocialInteraction()
+        {
+            if (timeSinceLastInteraction > NPC_DEATH_TIMELIMIT)
+            {
+                state = State.Dead;
+                humanVisuals.SetActive(false);
+                plantVisuals.SetActive(true);
+                //foreach (SpriteRenderer r in this.GetComponentsInChildren<SpriteRenderer>())
+                //{
+                //    r.color = Color.black;
+                //}
+            }
+
         }
 
         public static NPC GetNPCByName(string npcName)
@@ -93,7 +110,7 @@ namespace Yarn.Unity.Example
             return null;
         }
 
-        void Start ()
+        void Start()
         {
             NPCOptions.SetActive(true);
 
@@ -103,8 +120,6 @@ namespace Yarn.Unity.Example
         }
 
 
-        // 05/16 wenrui
-     
         public float PlantSocialHealth()
         {
             if (timeSinceLastInteraction > PLAYER_PLANT_STOP_GROWING_TIME)
@@ -119,30 +134,11 @@ namespace Yarn.Unity.Example
                 return 1;
             }
         }
-      
 
-        /*
-        public float PlantSocialHealth()
-        {
-            if (timeSinceLastInteraction > PLAYER_PLANT_STOP_GROWING_TIME && timeSinceLastInteraction <= 48)
-            {
-                // return 0 if have not interacted with NPC within time limit, 1 if interacted 
 
-                Debug.Log("Player has not interacted with " + this.characterName + " for a day");
-                return 0;
-            } else if (timeSinceLastInteraction > 48 && timeSinceLastInteraction == NPC_DEATH_TIMELIMIT)
-            {
-                return 1;
-            }
-            else
-            {
-                return 2;
-            }
-        }
-        */
 
         // Update is called once per frame
-        void Update ()
+        void Update()
         {
             bool interactButtonsShouldBeOn = false;
 
@@ -152,21 +148,7 @@ namespace Yarn.Unity.Example
                 float xDistanceToPlayer = Mathf.Abs(currentPlayerPosition.x - (this.transform.position.x + xInteractionOffset));
                 interactButtonsShouldBeOn = xDistanceToPlayer < interactDistance;
 
-                //check for "death"
-                timeSinceLastInteraction = IdyllTime.GetTotalGameHoursPassed() - timeOfLastInteractionWithPlayer;
-                if (timeSinceLastInteraction > NPC_DEATH_TIMELIMIT)
-                {
-                    state = State.Dead;
-                    humanVisuals.SetActive(false);
-                    plantVisuals.SetActive(true);
-                    //foreach (SpriteRenderer r in this.GetComponentsInChildren<SpriteRenderer>())
-                    //{
-                    //    r.color = Color.black;
-                    //}
-                }
 
-                //check for whether if the player has interacted with NPC that day
-                PlantSocialHealth();
 
             }
             else if (state == State.TalkingToPlayer)
@@ -190,6 +172,10 @@ namespace Yarn.Unity.Example
 
 
         }
+
+
+        
+  
         public void StartConversation()
         {
             this.state = State.TalkingToPlayer;

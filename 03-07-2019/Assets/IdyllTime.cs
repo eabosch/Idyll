@@ -19,7 +19,16 @@ public class IdyllTime : MonoBehaviour
     public static float sunriseStartTime = 3;
     public static float sunriseEndTime = 7;
 
-    
+    //System.Action a function with no arguments, and no return value
+    // void AFunction()
+    //{
+    //  print("this one would be ok");
+    //}
+
+        //a function you can change
+    public static System.Action OnDayFinish = () => { }; //equivalent to js function(){ }
+    //Annie's NPC script's 
+
 
     public static float GetTotalGameHoursPassed()
     {
@@ -44,10 +53,18 @@ public class IdyllTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int dayBeforeIncrement = GetGameDay();
         timeInSeconds += Time.deltaTime * timeSpeed;
         if (GetGameClockTimeHrs() >= 24)
         {
             //timeInSeconds = 0;
+        }
+
+        int dayAfterIncrement = GetGameDay();
+
+        if (dayAfterIncrement != dayBeforeIncrement)
+        {
+            OnDayFinish(); //notify other scripts who have +=subsribed to this function
         }
 
         dbgTimeHrs = GetGameClockTimeHrs();

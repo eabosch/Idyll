@@ -80,7 +80,6 @@ Rip: But who are you?
 [[New neighbor. Nice to meet you.|Rip.NewNeighbor]]
 <<if visited("Annie")>>
 [[Annie sent me. I was hoping for some advice.|Rip.Advice]]
-<<endif>>
 ===
 title: Rip.SentByAnnie
 tags: Rip.SentByAnnie
@@ -116,7 +115,7 @@ Rip: Too quiet for most.
 Rip: But perfect for a nap.
 Rip: In fact... I'm feeling a little drowsy.......
 Rip: *yaaaaaaaaawn* Well.... It's been nice knowing you..........
-
+<<>>
 Rip: *SNORK*
 Rip: *mimimimimi*
  -> Uh... Nice to meet you?

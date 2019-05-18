@@ -471,9 +471,8 @@ MonoBehaviour:
   readyToHarvest: {fileID: 2249561127398776275}
   deadPlant: {fileID: 2249561126892125165}
   growthCounter: 0
-  thirstDeathLevel: -5
   guardianNPCName: Annie
-  wateredAmount: 1
+  wateredAmount: 0
   daysToBecomeSeedling: 2
   daysToBecomeReadyToHarvest: 4
   myRow: {fileID: 0}

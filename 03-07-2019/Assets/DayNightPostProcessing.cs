@@ -57,7 +57,16 @@ public class DayNightPostProcessing : MonoBehaviour
     public void SetNightAmount (float nightPercentage) //0 == daytime, 1 == nightime
     {
         float hoursConvertedToZeroNeg50 = Mathf.Lerp(0, -45, nightPercentage);
-        colorGradingLayer.brightness.value = hoursConvertedToZeroNeg50;
+        float brightness = hoursConvertedToZeroNeg50;
+
+        //float blackoutStart = .90f;
+        //if (nightPercentage > blackoutStart) 
+        //{
+        //    float blackOutAmount = Mathf.InverseLerp(blackoutStart, 1, nightPercentage);
+
+        //    brightness = Mathf.Lerp(brightness, -100, blackOutAmount);
+        //}
+        colorGradingLayer.brightness.value = brightness;
         colorGradingLayer.mixerBlueOutBlueIn.value = Mathf.Lerp(100, 150, nightPercentage);
     }
 }

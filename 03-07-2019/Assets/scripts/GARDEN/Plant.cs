@@ -52,13 +52,13 @@ public class Plant : MonoBehaviour
     public GameObject deadPlant;
 
     public float growthCounter = 0;
-    public float thirstDeathLevel = -5;
+    const float THIRST_DEATH_LEVEL = -2;
 
     public string guardianNPCName = "";
 
     public bool IsThirsty()
     {
-        return wateredAmount < 0 && currentGrowthLevel != PlantGrowthLevel.Dead;
+        return wateredAmount <= 0 && currentGrowthLevel != PlantGrowthLevel.Dead;
     }
 
     public float getWaterLevel()
@@ -102,21 +102,83 @@ public class Plant : MonoBehaviour
     void Start()
     {
         SetPlantGrowthLevel(currentGrowthLevel);
+
+        this.wateredAmount = 0;
+
+
+        IdyllTime.OnDayFinish += ()=> { OnDayFinishPlant(); };
     }
 
     public int daysAlive = 0;
+
+    // adds the function to inspector menu thingy, can call this function from there
     [ContextMenu("OnDayFinish()")]
-    public void OnDayFinish()
+
+
+    public void OnDayFinishPlant()
     {
         daysAlive++;
-        float currentGrowthRate = 1;
+        float currentGrowthRate = GetGrowthRate();
+
+        growthCounter += currentGrowthRate;
+
+        // --- Decrease watered amount ----------------
+        if (currentGrowthLevel != PlantGrowthLevel.JustPlanted && currentGrowthLevel != PlantGrowthLevel.Dead)
+        {
+            wateredAmount -= 1;
+        }
+        
+
+        // Grow from seedling to ready to harvest
+        if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= daysToBecomeReadyToHarvest)
+        {
+            currentGrowthLevel = PlantGrowthLevel.ReadyToHarvest;
+            SetPlantGrowthLevel(currentGrowthLevel);
+            if (collectibleCollider != null)
+            {
+                collectibleCollider.SetActive(true);
+            }
+        }
+
+        // Grow from JustPlanted to seedling
+        if (currentGrowthLevel == PlantGrowthLevel.JustPlanted && growthCounter >= daysToBecomeSeedling)
+        {
+            currentGrowthLevel = PlantGrowthLevel.Seedling;
+            SetPlantGrowthLevel(currentGrowthLevel);
+
+            // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
+        }
+
+      
 
 
+        CheckForDeathUpdate();
+
+        //SET DEBUG VALUES TO OBSERVE IN INSPECTOR
+        currentGrowthRateDBG = currentGrowthRate;
+
+        
+    }
+
+    float GetGrowthRate()
+    {
+        //Factors affecting growth rate:
+        //WateredAmount, GuardianNpc
+        //normal growth rate is 1
+        //  2 grows twice as fast
+        // .5 half as fast
+        //  0 stops growing
 
         NPC guardianNpc = NPC.GetNPCByName(guardianNPCName);
 
+        bool inGoodWaterState = IsThirsty();
+        bool inGoodGuardianNpcState = guardianNpc.PlantSocialHealth() > 0;
 
-        //05/16 wenrui
+        float currentGrowthRate = 1;
+
+        
+
+
 
         if (guardianNpc != null)
         {
@@ -134,39 +196,11 @@ public class Plant : MonoBehaviour
 
         if (IsThirsty())
         {
-            //currentGrowthRate = 0; //Stop growing, if un-watered
+            currentGrowthRate = 0; //Stop growing, if un-watered
         }
 
-        growthCounter += currentGrowthRate;
-        //wateredAmount -= Time.deltaTime;
-
-        if (currentGrowthLevel == PlantGrowthLevel.Seedling && growthCounter >= daysToBecomeReadyToHarvest)
-        {
-            currentGrowthLevel = PlantGrowthLevel.ReadyToHarvest;
-            SetPlantGrowthLevel(currentGrowthLevel);
-            if (collectibleCollider != null)
-            {
-                collectibleCollider.SetActive(true);
-            }
-        }
-
-        if (currentGrowthLevel == PlantGrowthLevel.JustPlanted && growthCounter >= daysToBecomeSeedling)
-        {
-            currentGrowthLevel = PlantGrowthLevel.Seedling;
-            SetPlantGrowthLevel(currentGrowthLevel);
-
-            // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
-        }
-
-        bool plantIsAlive = currentGrowthLevel != PlantGrowthLevel.Dead;
-
-
-        CheckForDeathUpdate();
-
-        //SET DEBUG VALUES TO OBSERVE IN INSPECTOR
-        currentGrowthRateDBG = currentGrowthRate;
+        return currentGrowthRate;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -188,7 +222,7 @@ public class Plant : MonoBehaviour
         {
             // bool plantShouldDie = (currentGrowthLevel != PlantGrowthLevel.JustPlanted && wateredAmount < thirstDeathLevel);
             
-            bool plantShouldDie = (currentGrowthLevel == PlantGrowthLevel.Seedling && wateredAmount < thirstDeathLevel);
+            bool plantShouldDie = (currentGrowthLevel == PlantGrowthLevel.Seedling && wateredAmount < THIRST_DEATH_LEVEL);
             if (plantShouldDie)
             {
                 currentGrowthLevel = PlantGrowthLevel.Dead;
@@ -228,7 +262,7 @@ public class Plant : MonoBehaviour
         {
             if (Equipments.instance.tool_is_equipped(FarmToolType.WateringCan))
             {
-                this.wateredAmount = 3;//seconds, before becoming thirsty
+                this.wateredAmount = 1; //add 1 water point
             }
         }
         // ---- CASE : Plant is ready to harvest ---------------------------
