@@ -1,7 +1,7 @@
 title: Rip.Start
 tags: Rip.Start
 colorID: 0
-position: 571,252
+position: 571,248
 ---
 Vagrant: *yawn*
 
@@ -38,7 +38,7 @@ Vagrant: !!
 Vagrant: Je kunt Nederlands spreken??
 -> ... Not much.
 
-Vagrant: Ah... that's alright. Engels is ook prima.
+Vagrant: Ah... Nou, goed. Engels is ook prima.
 
 Vagrant: I do appreciate the effort, though.
 
@@ -56,7 +56,7 @@ tags: Rip.WakingUp
 colorID: 0
 position: 520,919
 ---
-Vagrant: Name's Rip.
+Vagrant: My name is Rip.
 
 Rip: Nice to meet you.
 
@@ -111,7 +111,7 @@ position: 839,1353
 ---
 Rip: A new neighbor, huh...
 Rip: *yawn* Well that doesn't happen very often.
-Rip: People are usually eager to get away from this lazy hollow.
+Rip: People are usually eager to get away from this sleepy hollow.
 Rip: Too quiet for most.
 Rip: But perfect for a nap.
 Rip: In fact... I'm feeling a little drowsy.......
@@ -197,4 +197,38 @@ Rip: It's really very simple.
  -> And then what?
 Rip: Well you have a parsnip!
 Rip: You can do with it what what you will!
+===
+title: Rip.Give
+tags: Rip.Give
+colorID: 0
+position: 1171,483
+---
+<<set $npc_can_receive to true>>
+Rip: *yawn*
+Rip: For me?
+Rip: You really shouldn't have... but what did you get me?
+
+[[Rip.Receives]]
+===
+title: Rip.Receives
+tags: Rip.Receive
+colorID: 0
+position: 1168,766
+---
+<<set $npc_can_receive to false>>
+
+<<if $item_for_npc is "apple">>
+<<endGivingSession Player accept>>
+Rip: Fantastic!
+Rip: Now if only I had some sugar...
+Rip: Next time bring some olieboel for me
+
+<<else>>
+Rip: Oh...?
+Rip: I won't refuse a gift, but you should save these for Annie.
+Rip: Thank you though.
+<<endGivingSession Player reject>>
+
+<<endif>>
+<<set $npc_can_receive to false>>
 ===
