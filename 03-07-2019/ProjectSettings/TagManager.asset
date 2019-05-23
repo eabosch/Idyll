@@ -48,3 +48,6 @@ TagManager:
   - name: dialog_ui
     uniqueID: 3398387419
     locked: 0
+  - name: plantInfo_ui
+    uniqueID: 3019534417
+    locked: 0
