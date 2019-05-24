@@ -30,13 +30,7 @@ public enum PlantGrowthLevel
 }
 
 
-/*
-public enum PlantWateringPeriod
-{
-    PlantedToSeedlingPeriod,
-    SeedlingToHarvestPeriod,
-}
-*/
+
 public class Plant : MonoBehaviour
 {
     // reminder for player to water plants
@@ -73,21 +67,7 @@ public class Plant : MonoBehaviour
     public float daysToBecomeSeedling = 1;
     public float daysToBecomeReadyToHarvest = 2;
 
-
-    // time to water plant
-    /*
-    public float timeToWaterForPlantToSeedling = 4;
-    public float timeToWaterForSeedlingToHarvest = 10;
-    */
-
-
     public UnplantedRow myRow = null;
-
-    /*
-    public int timeLimit1 = 0;
-    public int timeLimit2 = 0;
-    */
-
 
 
     [Header("--Item Related--")]
@@ -102,10 +82,9 @@ public class Plant : MonoBehaviour
     void Start()
     {
         SetPlantGrowthLevel(currentGrowthLevel);
-
         this.wateredAmount = 0;
 
-
+        // adds the plant status to OnDayFinish
         IdyllTime.OnDayFinish += ()=> { OnDayFinishPlant(); };
     }
 
@@ -145,12 +124,7 @@ public class Plant : MonoBehaviour
         {
             currentGrowthLevel = PlantGrowthLevel.Seedling;
             SetPlantGrowthLevel(currentGrowthLevel);
-
-            // if (this.wateredAmount >= 2 && this.wateredAmount < 2.5)  // **CHANGE TIME TO PUBLIC VAR**
         }
-
-      
-
 
         CheckForDeathUpdate();
 
@@ -162,6 +136,13 @@ public class Plant : MonoBehaviour
 
     float GetGrowthRate()
     {
+
+        /*
+        if (IsThirsty())
+        {
+            currentGrowthRate = 0; //Stop growing, if un-watered
+        }
+        */
         //Factors affecting growth rate:
         //WateredAmount, GuardianNpc
         //normal growth rate is 1
@@ -176,8 +157,32 @@ public class Plant : MonoBehaviour
 
         float currentGrowthRate = 1;
 
-        
 
+        if (inGoodWaterState)
+        {
+            // if player has visited the plant's guardian NPC
+            if (inGoodGuardianNpcState)
+            {
+                currentGrowthRate = 2f;
+            }
+            else // player has not visited the plant's guardian NPC
+            {
+                currentGrowthRate = 0.5f;
+            }
+
+        } else // if plant has not been watered enough
+        {
+            // if player has visited the plant's guardian NPC
+            if (inGoodGuardianNpcState)
+            {
+                currentGrowthRate = .75f;
+            }
+            else // player has not visited the plant's guardian NPC
+            {
+                currentGrowthRate = 0.5f;
+            }
+        }
+  
 
 
         if (guardianNpc != null)
@@ -193,12 +198,7 @@ public class Plant : MonoBehaviour
             }
         }
 
-
-        if (IsThirsty())
-        {
-            currentGrowthRate = 0; //Stop growing, if un-watered
-        }
-
+  
         return currentGrowthRate;
     }
     // Update is called once per frame

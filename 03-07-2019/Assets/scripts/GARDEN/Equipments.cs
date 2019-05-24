@@ -172,13 +172,14 @@ public class Equipments : MonoBehaviour
     }
 }
 
-[System.Serializable] //putting this line before a class defintion
+//[System.Serializable] //putting this line before a class defintion
 //will make it visible in the the inspector
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // for interactions with npc, whether the player visited the NPC on that day**
+/*
 public enum InteractionWithNPC {Visited, NotVisited};
 
 public class NPCRelationshipStatus
@@ -228,3 +229,4 @@ public class PlayerRelationshipWithNPC
 
 
 }
+*/

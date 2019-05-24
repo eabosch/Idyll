@@ -8,10 +8,14 @@ public class DayNightPostProcessing : MonoBehaviour
 
     [Range(0, 24)]
     public float dayNightBlend = 0;
+
+   
     //[SerializeField]
     //private float aPrivateFloat = 444444;
     public PostProcessVolume processingVol;
     ColorGrading colorGradingLayer = null;
+
+
     void Start()
     {
         processingVol = this.GetComponent<PostProcessVolume>();
@@ -69,4 +73,6 @@ public class DayNightPostProcessing : MonoBehaviour
         colorGradingLayer.brightness.value = brightness;
         colorGradingLayer.mixerBlueOutBlueIn.value = Mathf.Lerp(100, 150, nightPercentage);
     }
+
+
 }

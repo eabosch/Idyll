@@ -1005,14 +1005,17 @@ MonoBehaviour:
   readyToHarvest: {fileID: 1946722843763367126}
   deadPlant: {fileID: 1797903788194854369}
   growthCounter: 0
-  thirstDeathLevel: -5
-  wateredAmount: 1
-  timeToBecomeSeedling: 6
-  timeToBecomeReadyToHarvest: 12
+  guardianNPCName: Rip
+  wateredAmount: 0
+  daysToBecomeSeedling: 2
+  daysToBecomeReadyToHarvest: 4
   myRow: {fileID: 0}
   collectibleCollider: {fileID: 1207033456}
   inventoryItemPrefab: {fileID: 552037172233083853, guid: bc422ac651e2fcf42ac1ee5093fa3b26,
     type: 3}
+  currentGrowthRateDBG: 0
+  lastSeenSocialHealthDBG: 0
+  daysAlive: 0
 --- !u!50 &2024222876
 Rigidbody2D:
   serializedVersion: 4

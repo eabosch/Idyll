@@ -19,24 +19,27 @@ public class IdyllTime : MonoBehaviour
     public static float sunriseStartTime = 3;
     public static float sunriseEndTime = 7;
 
+    public GameObject Day;
+    public GameObject Night;
     //System.Action a function with no arguments, and no return value
     // void AFunction()
     //{
     //  print("this one would be ok");
     //}
 
-        //a function you can change
+    //a function you can change
     public static System.Action OnDayFinish = () => { }; //equivalent to js function(){ }
-    //Annie's NPC script's 
+
 
 
     public static float GetTotalGameHoursPassed()
     {
         return timeInSeconds / secondsPerGameHour;
     }
+
     public static float GetGameClockTimeHrs()
     {
-       
+
         return GetTotalGameHoursPassed() % 24;
     }
 
@@ -47,7 +50,7 @@ public class IdyllTime : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -80,7 +83,6 @@ public class IdyllTime : MonoBehaviour
             dayNightBlend = Mathf.InverseLerp(sunsetStartTime, sunsetEndTime, gameTime);
 
 
-            
         }
         else // ---------- NIGHTIME TO DAYTIME TRANSITION -------------
         {
@@ -90,5 +92,20 @@ public class IdyllTime : MonoBehaviour
 
 
         }
+
+
+        //
+        /*
+        if (gameTime >= sunsetStartTime && gameTime <= 24 || gameTime >= 0 && gameTime <= sunriseStartTime)
+        {
+            
+            Day.SetActive(false);
+            Night.SetActive(true);
+        } else if(gameTime >= sunriseEndTime && gameTime <= sunsetEndTime)
+        {
+            Night.SetActive(false);
+            Day.SetActive(true);
+        }
+        */
     }
 }
