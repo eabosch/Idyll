@@ -72,6 +72,10 @@ namespace Yarn.Unity.Example
         public GameObject humanVisuals;
         public GameObject plantVisuals;
 
+        public GameObject noInteractionDay1;
+        public GameObject noInteractionDay2;
+
+
         [Header("Optional")]
         public TextAsset scriptToLoad;
 
@@ -83,7 +87,9 @@ namespace Yarn.Unity.Example
         private void Awake()
         {
             _allNpcs[this.name] = this;
-            IdyllTime.OnDayFinish += () => { KillNPCIfNotEnoughtSocialInteraction(); };
+            IdyllTime.OnDayFinish += () => { KillNPCIfNotEnoughtSocialInteraction();
+                GrowWildPlantIfNoInteractionOnThatDay();
+            };
         }
 
         void KillNPCIfNotEnoughtSocialInteraction()
@@ -99,6 +105,17 @@ namespace Yarn.Unity.Example
                 //}
             }
 
+        }
+
+        void GrowWildPlantIfNoInteractionOnThatDay()
+        {
+            if(timeSinceLastInteraction>= 48)
+            {
+                noInteractionDay2.SetActive(true);
+            } else if (timeSinceLastInteraction >= 24)
+            {
+                noInteractionDay1.SetActive(true);
+            }
         }
 
         public static NPC GetNPCByName(string npcName)

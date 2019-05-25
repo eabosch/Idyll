@@ -26,17 +26,12 @@ Strange Woman: Where are my manners? I'm Annie.
 
 Annie: I am glad for a new neighbor, honest. You just caught me a bit unawares.
 
-
-<<if not visited("Annie.dreary")>>
 [[Apologize for the trouble ma'am|Annie.Dreary]]
-<<endif>>
-
-<<if not visited("Annie.poorImpression")>>
 [[It's no trouble, ma'am. I Understand.|Annie.PoorImpression]]
-<<endif>>
+
 ===
-title: Annie.dreary
-tags: Annie.dreary
+title: Annie.Dreary
+tags: Annie.Dreary
 colorID: 1
 position: -207,713
 ---
@@ -63,12 +58,12 @@ Annie: My favorite method of clearing my mind. And the birdsong is so pleasant.
 title: Annie.SuitsYou
 tags: Annie.SuitsYou
 colorID: 1
-position: -255,1029
+position: -254,1029
 ---
 Annie: Then this place will suit you just fine!
 ===
-title: Annie.nicePeople
-tags: Annie.nicePeople
+title: Annie.NicePeople
+tags: Annie.NicePeople
 colorID: 1
 position: -16,1025
 ---

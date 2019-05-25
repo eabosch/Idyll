@@ -163,11 +163,11 @@ public class Plant : MonoBehaviour
             // if player has visited the plant's guardian NPC
             if (inGoodGuardianNpcState)
             {
-                currentGrowthRate = 2f;
+                currentGrowthRate = 1f;
             }
             else // player has not visited the plant's guardian NPC
             {
-                currentGrowthRate = 0.5f;
+                currentGrowthRate = 0f;
             }
 
         } else // if plant has not been watered enough
@@ -175,11 +175,12 @@ public class Plant : MonoBehaviour
             // if player has visited the plant's guardian NPC
             if (inGoodGuardianNpcState)
             {
-                currentGrowthRate = .75f;
+                currentGrowthRate = 0f;
             }
             else // player has not visited the plant's guardian NPC
             {
-                currentGrowthRate = 0.5f;
+                // plant should die instantly
+                //currentGrowthRate = 0.5f;
             }
         }
   
