@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class IdyllTime : MonoBehaviour
 {
-    static float timeInSeconds;
+    
+    static float timeInRealSeconds = 8 * realSecondsPerGameHour;
     [SerializeField] float dbgTimeHrs = 0;
 
     public float timeSpeed = 1;
-    const float secondsPerGameHour = 60;
+    const float realSecondsPerGameHour = 60;
 
     public static float dayNightBlend = 0; // 0 = day, 1 = night
 
@@ -34,7 +35,7 @@ public class IdyllTime : MonoBehaviour
 
     public static float GetTotalGameHoursPassed()
     {
-        return timeInSeconds / secondsPerGameHour;
+        return timeInRealSeconds / realSecondsPerGameHour;
     }
 
     public static float GetGameClockTimeHrs()
@@ -50,14 +51,13 @@ public class IdyllTime : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
         int dayBeforeIncrement = GetGameDay();
-        timeInSeconds += Time.deltaTime * timeSpeed;
+        timeInRealSeconds += Time.deltaTime * timeSpeed;
         if (GetGameClockTimeHrs() >= 24)
         {
             //timeInSeconds = 0;
