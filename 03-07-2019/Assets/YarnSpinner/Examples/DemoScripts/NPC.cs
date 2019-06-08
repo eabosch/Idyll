@@ -170,8 +170,9 @@ namespace Yarn.Unity.Example
             {
                 if (daysPassed >= 2)
                 {
-                    NPCOptions.SetActive(true); 
-                }
+                    NPCOptions.SetActive(true);
+                    isNPCInteractable = true;
+                } 
             } else
            {
                isNPCInteractable = true;
