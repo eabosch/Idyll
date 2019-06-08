@@ -57,7 +57,10 @@ namespace Yarn.Unity.Example
         public float xInteractionOffset = 0;
         public float interactDistance = 1.5f;
         public string characterName = "";
+        //public bool isRipInteractible;
+        //public bool isAnnieInteractable;
 
+        public bool isNPCInteractable;
         public GameObject NPCOptions;
 
         const float NPC_DEATH_TIMELIMIT = 72; //3days*24hrs
@@ -83,6 +86,8 @@ namespace Yarn.Unity.Example
         public static Dictionary<string, NPC> _allNpcs = new Dictionary<string, NPC>();
 
         public float timeSinceLastInteraction => IdyllTime.GetTotalGameHoursPassed() - timeOfLastInteractionWithPlayer;
+
+        public int daysPassed => IdyllTime.GetGameDay();
 
         private void Awake()
         {
@@ -129,7 +134,7 @@ namespace Yarn.Unity.Example
 
         void Start()
         {
-            NPCOptions.SetActive(true);
+            //NPCOptions.SetActive(true);
 
             if (scriptToLoad != null) {
                 FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
@@ -157,35 +162,50 @@ namespace Yarn.Unity.Example
         // Update is called once per frame
         void Update()
         {
-            bool interactButtonsShouldBeOn = false;
+            Debug.Log(daysPassed + " days have passed");
 
-            if (state == State.Idle)
+           bool interactButtonsShouldBeOn = false;
+
+            if (this.characterName == "Rip")
             {
-                Vector3 currentPlayerPosition = PlayerCharacter.instance.transform.position;
-                float xDistanceToPlayer = Mathf.Abs(currentPlayerPosition.x - (this.transform.position.x + xInteractionOffset));
-                interactButtonsShouldBeOn = xDistanceToPlayer < interactDistance;
-
-
-
-            }
-            else if (state == State.TalkingToPlayer)
-            {
-                if (!YarnHelper.isDialogueRunning)
+                if (daysPassed >= 2)
                 {
-                    state = State.Idle;
+                    NPCOptions.SetActive(true); 
                 }
+            } else
+           {
+               isNPCInteractable = true;
             }
 
-            if (NPCOptions.activeSelf != interactButtonsShouldBeOn)
-            {
-                NPCOptions.SetActive(interactButtonsShouldBeOn);
-            }
+            if (isNPCInteractable)
+           {
+                if (state == State.Idle)
+                {
+                    Vector3 currentPlayerPosition = PlayerCharacter.instance.transform.position;
+                    float xDistanceToPlayer = Mathf.Abs(currentPlayerPosition.x - (this.transform.position.x + xInteractionOffset));
+                    interactButtonsShouldBeOn = xDistanceToPlayer < interactDistance;
 
-            if (state == State.TalkingToPlayer || state == State.ReceivingItem)
-            {
-                timeOfLastInteractionWithPlayer = IdyllTime.GetTotalGameHoursPassed();
-            }
 
+
+                }
+                else if (state == State.TalkingToPlayer)
+                {
+                    if (!YarnHelper.isDialogueRunning)
+                    {
+                        state = State.Idle;
+                    }
+                }
+
+                if (NPCOptions.activeSelf != interactButtonsShouldBeOn)
+                {
+                    NPCOptions.SetActive(interactButtonsShouldBeOn);
+                }
+
+                if (state == State.TalkingToPlayer || state == State.ReceivingItem)
+                {
+                    timeOfLastInteractionWithPlayer = IdyllTime.GetTotalGameHoursPassed();
+                }
+           }
 
 
         }

@@ -22,6 +22,8 @@ public class IdyllTime : MonoBehaviour
 
     public GameObject Day;
     public GameObject Night;
+
+    public GameObject Rip;
     //System.Action a function with no arguments, and no return value
     // void AFunction()
     //{
@@ -56,7 +58,16 @@ public class IdyllTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         int dayBeforeIncrement = GetGameDay();
+        /*
+        if (dayBeforeIncrement >= 2)
+        {
+            IdyllTime.OnDayFinish += () => {
+                Rip.GetComponent<NPC>().isNPCInteractible = true;
+            };
+        }
+        */
         timeInRealSeconds += Time.deltaTime * timeSpeed;
         if (GetGameClockTimeHrs() >= 24)
         {
