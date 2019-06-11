@@ -74,7 +74,7 @@ namespace Yarn.Unity.Example
         [Header("Optional")]
         public GameObject humanVisuals;
         public GameObject plantVisuals;
-
+        //public GameObject wildPlant;
         public GameObject noInteractionDay1;
         public GameObject noInteractionDay2;
 
@@ -103,6 +103,7 @@ namespace Yarn.Unity.Example
             {
                 state = State.Dead;
                 humanVisuals.SetActive(false);
+             
                 plantVisuals.SetActive(true);
                 //foreach (SpriteRenderer r in this.GetComponentsInChildren<SpriteRenderer>())
                 //{
@@ -114,8 +115,13 @@ namespace Yarn.Unity.Example
 
         void GrowWildPlantIfNoInteractionOnThatDay()
         {
-            if(timeSinceLastInteraction>= 48)
+            if (timeSinceLastInteraction >= 72)
             {
+                noInteractionDay2.SetActive(false);
+            }
+            else if(timeSinceLastInteraction>= 48)
+            {
+                noInteractionDay1.SetActive(false);
                 noInteractionDay2.SetActive(true);
             } else if (timeSinceLastInteraction >= 24)
             {

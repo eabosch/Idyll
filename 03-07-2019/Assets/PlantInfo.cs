@@ -13,6 +13,7 @@ public class PlantInfo : MonoBehaviour
 
     public GameObject plantInfoText;
     bool isPlantInfoOn;
+    
 
     [SerializeField]
      GameObject plantNameText;
@@ -55,6 +56,7 @@ public class PlantInfo : MonoBehaviour
     {
         //plantInfoText.SetActive(true);
         isPlantInfoOn = true;
+        
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
@@ -62,6 +64,7 @@ public class PlantInfo : MonoBehaviour
     {
         //plantInfoText.SetActive(false);
         isPlantInfoOn = false;
+        
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
     private void OnMouseEnter()

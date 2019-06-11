@@ -10,6 +10,9 @@ public class PlantInfoPanel : MonoBehaviour
     public Text plantNameText;
     public Text plantDescriptionText;
     public static PlantInfoPanel instance;
+
+    public Animator plantInfoAnimator;
+
     void Awake()
     {
         instance = this;
@@ -17,9 +20,15 @@ public class PlantInfoPanel : MonoBehaviour
 
     public void ShowPlantInfo(PlantInfo info)
     {
+        plantInfoAnimator.SetBool("plantInfoActive", true);
         container.SetActive(true);
         this.plantNameText.text = info.plantName;
         this.plantDescriptionText.text = info.plantDescription;
+    }
+
+    public void HidePlantInfo()
+    {
+        plantInfoAnimator.SetBool("plantInfoActive", false);
     }
 
     
