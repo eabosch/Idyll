@@ -30,7 +30,7 @@ public class EndOfDayCanvas : MonoBehaviour
         }
         //map(IdyllTime.dayNightBlend, .95, 1, 0,1);
         canvasGroup.alpha = overlayAlpha;
-        displayIdyllDay.text = "End of day " + stableDaysPassed + "\n Tomorrow is day " + (stableDaysPassed+1);
+        displayIdyllDay.text = "End of day " + stableDaysPassed; //+ "\n Tomorrow is day " + (stableDaysPassed+1);
         showedOverlayLastFrame = showingOverlayThisFrame;
     }
 

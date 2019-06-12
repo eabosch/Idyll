@@ -10,11 +10,15 @@ Strange Woman:  A new face... that's rare.
 
 [[It's nice to meet you, ma'am|Annie.Hello]]
 
+
 <<else>> 
 Annie: Hello again. How have you been?
 Player: Oh not bad. Yourself?
 Annie: Fine, thank you.
+
 <<endif>>
+
+
 ===
 title: Annie.Hello
 tags: Annie.Hello
@@ -61,6 +65,8 @@ colorID: 1
 position: -254,1029
 ---
 Annie: Then this place will suit you just fine!
+
+<<set $next_node_2 to true>>
 ===
 title: Annie.NicePeople
 tags: Annie.NicePeople
@@ -119,6 +125,7 @@ Annie: His advice is invaluable, though. Since you're new here, it may be nice t
  -> Thank you, I will.
 Annie: Good luck with the farm!
 
+<<set $next_node_1 to true>>
 ===
 title: Annie.DoNotGivePresent
 tags: 
@@ -244,7 +251,7 @@ tags: Annie.ThanksForComing
 colorID: 2
 position: -223,1551
 ---
-<<if visited("Annie.Parsnip")>>
+<<if $next_node_2 is true>>
 Annie: It's nice to finally have people here.
 Annie: This place feels just a little more lively.
 Annie: Even Rip is seeming more animated.
@@ -326,6 +333,7 @@ tags:
 colorID: 4
 position: 417,1549
 ---
+<<if $next_node_1 is true>>
 Annie: I apologize if this is a controversial opinion but parsnips are simply the best vegetable.
 Annie: They're hardy enough to survive harsh soil and seasons, and they make an excellent soup.
  -> Any reason for the sudden conviction?
@@ -334,6 +342,7 @@ Annie: I realized I hadn't had parsnip soup since I last saw my mother.
 Annie: And that was a very long time ago.
 [[Would you like a parsnip, then?|Annie.RecipeOne]]
 [[How long ago?|Annie.NoneOfYourBusiness]]
+<<endif>>
 ===
 title: Annie.RecipeOne
 tags: Annie.RecipeOne

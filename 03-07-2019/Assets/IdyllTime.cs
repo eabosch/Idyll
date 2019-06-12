@@ -71,7 +71,12 @@ public class IdyllTime : MonoBehaviour
             };
         }
         */
-        timeInRealSeconds += Time.deltaTime * timeSpeed;
+
+        if (!YarnHelper.isDialogueRunning)
+        {
+            timeInRealSeconds += Time.deltaTime * timeSpeed;
+        }
+
         if (GetGameClockTimeHrs() >= 24)
         {
             //timeInSeconds = 0;
