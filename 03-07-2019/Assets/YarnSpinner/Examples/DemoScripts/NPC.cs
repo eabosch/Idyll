@@ -75,8 +75,11 @@ namespace Yarn.Unity.Example
         public GameObject humanVisuals;
         public GameObject plantVisuals;
         //public GameObject wildPlant;
+
+        [Header("Neglect Display")]
         public GameObject noInteractionDay1;
         public GameObject noInteractionDay2;
+        public Animator wildPlantsAnimator;
 
 
         [Header("Optional")]
@@ -103,8 +106,15 @@ namespace Yarn.Unity.Example
             {
                 state = State.Dead;
                 humanVisuals.SetActive(false);
-             
-                plantVisuals.SetActive(true);
+                ClearWildPlants();
+
+                this.delayedFunction( () => plantVisuals.SetActive(true), 2f);
+                //this.delayedFunction(turnOnPlantVisuals, 2f);    
+            //this.xuTween((float t) => 
+                //{
+                //    plantVisuals.transform.localScale = Vector3.one * t;
+                //}, 2);
+                //
                 //foreach (SpriteRenderer r in this.GetComponentsInChildren<SpriteRenderer>())
                 //{
                 //    r.color = Color.black;
@@ -113,19 +123,44 @@ namespace Yarn.Unity.Example
 
         }
 
+        void ClearWildPlants()
+        {
+            //noInteractionDay1.SetActive(false);
+            //noInteractionDay2.SetActive(false);
+            if (wildPlantsAnimator != null)
+            {
+                wildPlantsAnimator.SetInteger("growth_level", 0);
+            }
+            //wildPlantsAnimator?.SetInteger("growth_level", 0);
+            //if (wildPlantsAnimator != null && wildPlantsAnimator.avatar != null)
+            //{ }
+            //if (wildPlantsAnimator?.avatar != null)
+            //{ }
+
+        }
+
         void GrowWildPlantIfNoInteractionOnThatDay()
         {
+            bool wildPlantsCouldntGrow = state == State.TalkingToPlayer || state == State.ReceivingItem;
+            if (wildPlantsCouldntGrow || wildPlantsAnimator == null)
+            {
+                return;
+            }
+
             if (timeSinceLastInteraction >= 72)
             {
                 noInteractionDay2.SetActive(false);
             }
             else if(timeSinceLastInteraction>= 48)
             {
-                noInteractionDay1.SetActive(false);
-                noInteractionDay2.SetActive(true);
+                //noInteractionDay1.SetActive(false);
+                //noInteractionDay2.SetActive(true);
+                wildPlantsAnimator.SetInteger("growth_level", 2);
             } else if (timeSinceLastInteraction >= 24)
             {
-                noInteractionDay1.SetActive(true);
+                //noInteractionDay1.SetActive(true);
+                //noInteractionDay2.SetActive(false);
+                wildPlantsAnimator.SetInteger("growth_level", 1);
             }
         }
 
@@ -224,13 +259,18 @@ namespace Yarn.Unity.Example
         {
             this.state = State.TalkingToPlayer;
             PlayerCharacter.instance.TalkToNPC(this);
+            ClearWildPlants();
         }
 
         public void StartGiveInteraction()
         {
             this.state = State.TalkingToPlayer;
             PlayerCharacter.instance.TalkToNPC(this, this.characterName + ".Give");
+            ClearWildPlants();
         }
+
+
+
 
         private void OnDrawGizmosSelected()
         {

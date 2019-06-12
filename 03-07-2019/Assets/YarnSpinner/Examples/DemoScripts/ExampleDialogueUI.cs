@@ -90,6 +90,7 @@ namespace Yarn.Unity.Example {
         /// Show a line of dialogue, gradually
         public override IEnumerator RunLine (Yarn.Line line)
         {
+            this.dialogueContainer.SetActive(true);
             // Show the text
             lineText.gameObject.SetActive (true);
 
@@ -128,6 +129,7 @@ namespace Yarn.Unity.Example {
         public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
                                                 Yarn.OptionChooser optionChooser)
         {
+            this.dialogueContainer.SetActive(false);
             // Do a little bit of safety checking
             if (optionsCollection.options.Count > optionButtons.Count) {
                 Debug.LogWarning("There are more options to present than there are" +

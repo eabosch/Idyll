@@ -13,12 +13,12 @@ public class IdyllTime : MonoBehaviour
 
     public static float dayNightBlend = 0; // 0 = day, 1 = night
 
-    public static float sunsetStartTime = 16;
-    public static float sunsetEndTime = 20;
+    public static float sunsetStartTime => 16;
+    public static float sunsetEndTime => 20;
 
 
-    public static float sunriseStartTime = 3;
-    public static float sunriseEndTime = 7;
+    public static float sunriseStartTime => 3;
+    public static float sunriseEndTime => 7;
 
     public GameObject Day;
     public GameObject Night;
@@ -48,8 +48,11 @@ public class IdyllTime : MonoBehaviour
 
     public static int GetGameDay()
     {
-        return (int)(GetTotalGameHoursPassed() / 24);
+        return (int)(GetTotalGameHoursPassed() / 24) + 1;
     }
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
