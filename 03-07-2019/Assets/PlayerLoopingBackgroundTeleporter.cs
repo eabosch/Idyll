@@ -40,6 +40,7 @@ public class PlayerLoopingBackgroundTeleporter : MonoBehaviour
         if (playerHasWalkedOffRightSideOfWorld)
         {
             Vector3 updatedPlayerPosition = playerCharacter.transform.position;
+            Debug.Log("YOU WALKED RIGHT");
 
             updatedPlayerPosition.x -= worldWidth;
             playerCharacter.transform.position = updatedPlayerPosition;
